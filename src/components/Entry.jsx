@@ -1,6 +1,6 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBan } from '@fortawesome/free-solid-svg-icons'
+import { faBan, faFileWord, faQuestion, faClock } from '@fortawesome/free-solid-svg-icons'
 import configTypes from '../DataTypes/ConfigTypes';
 import moment from 'moment';
 
@@ -10,8 +10,10 @@ function getDate() {
 
 function Entry(props) {
     let type
+    let icon
     if (props.type === configTypes.STRING) {
-        type = <input></input>
+        type = <input placeholder="Please fill value"></input>
+        icon = <FontAwesomeIcon icon={faFileWord} />
     }
     if (props.type === configTypes.BOOL) {
         type = (
@@ -20,20 +22,20 @@ function Entry(props) {
                 <option>true</option>
                 <option>false</option>
             </select>)
+        icon = <FontAwesomeIcon icon={faQuestion} />      
     }
     if (props.type === configTypes.DATETIME) {
-        type = (
-            <input type="datetime-local" defaultValue={getDate()}></input>
-        )
+        type = <input type="datetime-local" defaultValue={getDate()}></input>
+     icon = <FontAwesomeIcon icon={faClock
+} /> 
     }
     return (
-        <tr>
-            <td>{props.config}</td>
-            <td>{props.type}</td>
-            <td>{type}</td>
+    <tr>
+        <td>{props.config}</td>
+        <td>{icon}</td>
+        <td>{type}</td>
             <td><FontAwesomeIcon icon={faBan} /></td>
         </tr>
     );
 }
-
 export default Entry
