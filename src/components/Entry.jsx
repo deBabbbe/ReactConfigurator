@@ -26,8 +26,7 @@ function Entry(props) {
     }
     if (props.type === configTypes.DATETIME) {
         type = <input type="datetime-local" defaultValue={getDate()}></input>
-     icon = <FontAwesomeIcon icon={faClock
-} /> 
+     icon = <FontAwesomeIcon icon={faClock} /> 
     }
     return (
     <tr>
