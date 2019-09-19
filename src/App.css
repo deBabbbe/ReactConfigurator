@@ -1,0 +1,32 @@
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  font-size: calc(10px + 2vmin);
+  color: white;
+  padding: 50px;
+}
+th,
+td {
+  border: 0.5px solid;
+}
+#addButton {
+  margin-left: 10px;
+}
+table {
+  width: 50%;
+  margin: 10px 10px;
+}
+td {
+  width: 100%;
+  padding-right: 10px;
+  vertical-align: center;
+}
+select {
+  width: 100%;
+  padding-right: 10px;
+  text-align-last: center;
+}
+input {
+  width: 100%;
+  box-sizing: border-box;
+}
