@@ -7,6 +7,9 @@ class App extends React.Component {
     return (
       <div className="App">
         <header className="App-header">
+          <select>
+            <option>web.config</option>
+          </select>
           <table>
             <Entries></Entries>
           </table>
