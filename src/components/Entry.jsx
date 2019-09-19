@@ -8,7 +8,7 @@ function getDate() {
     return moment().format('YYYY-MM-DDTHH:mm:ss');
 }
 
-function Entry(props) {
+function getContentDependingOnType(props) {
     let type
     let icon
     if (props.type === configTypes.STRING) {
@@ -22,17 +22,24 @@ function Entry(props) {
                 <option>true</option>
                 <option>false</option>
             </select>)
-        icon = <FontAwesomeIcon icon={faQuestion} />      
+        icon = <FontAwesomeIcon icon={faQuestion} />
     }
     if (props.type === configTypes.DATETIME) {
         type = <input type="datetime-local" defaultValue={getDate()}></input>
-     icon = <FontAwesomeIcon icon={faClock} /> 
+        icon = <FontAwesomeIcon icon={faClock} />
     }
+
+    return { type, icon }
+}
+
+function Entry(props) {
+    const { type, icon } = getContentDependingOnType(props)
+
     return (
-    <tr>
-        <td>{props.config}</td>
-        <td>{icon}</td>
-        <td>{type}</td>
+        <tr>
+            <td>{props.config}</td>
+            <td>{icon}</td>
+            <td>{type}</td>
             <td><FontAwesomeIcon icon={faBan} /></td>
         </tr>
     );

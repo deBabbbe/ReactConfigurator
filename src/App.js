@@ -1,7 +1,5 @@
 import React from 'react';
 import './App.scss';
-import Entry from './Components/Entry.jsx'
-import configType from './DataTypes/ConfigTypes'
 import Entries from './Components/Entries';
 
 class App extends React.Component {
