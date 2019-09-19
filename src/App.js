@@ -1,7 +1,8 @@
-import React from 'react';  
+import React from 'react';
 import './App.scss';
-import Entry from './Entry.jsx'
-import configType from './ConfigTypes'
+import Entry from './Components/Entry.jsx'
+import configType from './DataTypes/ConfigTypes'
+import Entries from './Components/Entries';
 
 class App extends React.Component {
   render() {
@@ -9,11 +10,7 @@ class App extends React.Component {
       <div className="App">
         <header className="App-header">
           <table>
-            <Entry config="Common.Imap.Username" type={configType.STRING}></Entry>
-            <Entry config="Common.Imap.Password" type={configType.STRING}></Entry>
-            <Entry config="Common.Imap.UseSsl" type={configType.BOOL}></Entry>
-            <Entry config="Common.Send.Timeout" type={configType.DATETIME}></Entry>
-            <Entry config="Common.Imap.Glubsch" type={configType.STRING}></Entry>
+            <Entries></Entries>
           </table>
           <button id="addButton">Hinzufügen</button>
         </header>
