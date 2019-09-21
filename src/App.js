@@ -11,8 +11,7 @@ class App extends React.Component {
   }
 
   addEntry = () => {
-    console.warn("guggemol", this.state);
-    const entryToInsert = { config: "Common.Imap.Guggemol", type: configTypes.STRING }
+    const entryToInsert = { config: "", type: configTypes.STRING }
     this.setState({ data: [...this.state.data, entryToInsert] })
   }
 
