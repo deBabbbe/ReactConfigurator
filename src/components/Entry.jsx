@@ -37,10 +37,10 @@ function Entry(props) {
 
     return (
         <tr>
-            <td>{props.config}</td>
-            <td>{icon}</td>
+            <td><input value={props.config} /></td>
+            <td title={props.type}>{icon}</td>
             <td>{type}</td>
-            <td><FontAwesomeIcon icon={faBan} /></td>
+            <td><FontAwesomeIcon icon={faBan} title="Löschen" /></td>
         </tr>
     );
 }
