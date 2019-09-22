@@ -4,44 +4,49 @@ import { faBan, faFileWord, faQuestion, faClock } from '@fortawesome/free-solid-
 import configTypes from '../DataTypes/ConfigTypes';
 import moment from 'moment';
 
-function getDate() {
-    return moment().format('YYYY-MM-DDTHH:mm:ss');
-}
-
-function getContentDependingOnType(props) {
-    let type
-    let icon
-    if (props.type === configTypes.STRING) {
-        type = <input placeholder="Please fill value"></input>
-        icon = <FontAwesomeIcon icon={faFileWord} />
-    }
-    if (props.type === configTypes.BOOL) {
-        type = (
-            <select>
-                <option disabled selected value> -- select an option -- </option>
-                <option>true</option>
-                <option>false</option>
-            </select>)
-        icon = <FontAwesomeIcon icon={faQuestion} />
-    }
-    if (props.type === configTypes.DATETIME) {
-        type = <input type="datetime-local" defaultValue={getDate()}></input>
-        icon = <FontAwesomeIcon icon={faClock} />
+class Entry extends React.Component {
+    constructor(props) {
+        super(props)
+        this.getContentDependingOnType()
     }
 
-    return { type, icon }
-}
+    getDate() {
+        return moment().format('YYYY-MM-DDTHH:mm:ss');
+    }
 
-function Entry(props) {
-    const { type, icon } = getContentDependingOnType(props)
+    getContentDependingOnType() {
+        if (this.props.type === configTypes.STRING) {
+            this.type = <input placeholder="Please fill value"></input>
+            this.icon = <FontAwesomeIcon icon={faFileWord} />
+        }
+        if (this.props.type === configTypes.BOOL) {
+            this.type = (
+                <select>
+                    <option disabled selected value> -- select an option -- </option>
+                    <option>true</option>
+                    <option>false</option>
+                </select>)
+            this.icon = <FontAwesomeIcon icon={faQuestion} />
+        }
+        if (this.props.type === configTypes.DATETIME) {
+            this.type = <input type="datetime-local" defaultValue={this.getDate()}></input>
+            this.icon = <FontAwesomeIcon icon={faClock} />
+        }
+    }
 
-    return (
-        <tr>
-            <td><input value={props.config} /></td>
-            <td title={props.type}>{icon}</td>
-            <td>{type}</td>
-            <td><FontAwesomeIcon icon={faBan} title="Löschen" /></td>
-        </tr>
-    );
+    removeEntry = () => {
+        this.props.removeEntry(this.props.config)
+    }
+
+    render() {
+        return (
+            <tr>
+                <td><input value={this.props.config} /></td>
+                <td title={this.props.type}>{this.icon}</td>
+                <td>{this.type}</td>
+                <td><FontAwesomeIcon icon={faBan} title="Löschen" onClick={this.removeEntry} /></td>
+            </tr>
+        );
+    }
 }
 export default Entry
