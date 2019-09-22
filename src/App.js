@@ -4,18 +4,24 @@ import Entries from './Components/Entries';
 import configEntries from "./DataTypes/ConfigEntries";
 import configTypes from './DataTypes/ConfigTypes';
 
+const uuidv4 = require('uuid/v4');
+
 class App extends React.Component {
-  state = {
-    data: configEntries
+  constructor() {
+    super();
+    configEntries.forEach(entry => Object.assign(entry, { key: uuidv4() }))
+    this.state = {
+      data: configEntries
+    }
   }
 
   addEntry = () => {
-    const entryToInsert = { config: "", type: configTypes.STRING }
+    const entryToInsert = { config: "", type: configTypes.STRING, key: uuidv4() }
     this.setState({ data: [...this.state.data, entryToInsert] })
   }
 
-  removeEntry = (config) => {
-    const newState = this.state.data.filter(function (d) { return d.config !== config });
+  removeEntry = (key) => {
+    const newState = this.state.data.filter(function (d) { return d.key !== key });
     this.setState({ data: newState })
   }
 
