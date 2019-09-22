@@ -21,8 +21,8 @@ class Entry extends React.Component {
         }
         if (this.props.type === configTypes.BOOL) {
             this.type = (
-                <select>
-                    <option disabled selected value> -- select an option -- </option>
+                <select defaultValue=" -- select an option -- ">
+                    <option> -- select an option -- </option>
                     <option>true</option>
                     <option>false</option>
                 </select>)
@@ -40,14 +40,14 @@ class Entry extends React.Component {
 
     render() {
         return (
-            <tbody key={this.props.id}>
-                <tr key={this.props.id}>
+            <tbody>
+                <tr>
                     <td><input defaultValue={this.props.config} /></td>
                     <td title={this.props.type}>{this.icon}</td>
                     <td>{this.type}</td>
                     <td><FontAwesomeIcon icon={faBan} title="Löschen" onClick={this.removeEntry} /></td>
                 </tr>
-            </tbody>
+            </tbody >
         );
     }
 }
