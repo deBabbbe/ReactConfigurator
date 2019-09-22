@@ -25,12 +25,21 @@ class App extends React.Component {
     this.setState({ data: newState })
   }
 
+  configFileChanged = (event) => {
+    if (event.target.value === "web.config") {
+      this.setSateToDefaultConfigs()
+    }
+  }
+
   render = () => {
     return (
       <div className="App">
         <header className="App-header">
-          <select>
+          <select onChange={this.configFileChanged}>
             <option>web.config</option>
+            <option>EmailImporter.exe.config</option>
+            <option>SmoopeImporter.exe.config</option>
+            <option>SkypeImporter.exe.config</option>
           </select>
           <table>
             <Entries data={this.state.data} removeEntry={this.removeEntry}></Entries>
@@ -39,6 +48,13 @@ class App extends React.Component {
         </header>
       </div>
     );
+  }
+
+  setSateToDefaultConfigs() {
+    configEntries.forEach(entry => Object.assign(entry, { key: uuidv4() }));
+    this.setState({
+      data: configEntries
+    });
   }
 }
 
