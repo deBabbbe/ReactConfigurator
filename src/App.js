@@ -9,9 +9,10 @@ const uuidv4 = require('uuid/v4');
 class App extends React.Component {
   constructor() {
     super();
-    configEntries.forEach(entry => Object.assign(entry, { key: uuidv4() }))
+    const configs = configEntries.find(c => c.fileName === "web.config").configs
+    configs.forEach(entry => Object.assign(entry, { key: uuidv4() }))
     this.state = {
-      data: configEntries
+      data: configs
     }
   }
 
@@ -26,9 +27,12 @@ class App extends React.Component {
   }
 
   configFileChanged = (event) => {
-    if (event.target.value === "web.config") {
-      this.setSateToDefaultConfigs()
-    }
+    const configs = configEntries.find(c => c.fileName === event.target.value).configs
+    configs.forEach(entry => Object.assign(entry, { key: uuidv4() }))
+
+    this.setState({
+      data: configs
+    });
   }
 
   render = () => {
@@ -48,13 +52,6 @@ class App extends React.Component {
         </header>
       </div>
     );
-  }
-
-  setSateToDefaultConfigs() {
-    configEntries.forEach(entry => Object.assign(entry, { key: uuidv4() }));
-    this.setState({
-      data: configEntries
-    });
   }
 }
 
