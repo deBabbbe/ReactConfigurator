@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBan, faFileWord, faQuestion, faClock } from '@fortawesome/free-solid-svg-icons'
 import configTypes from '../DataTypes/ConfigTypes';
 import moment from 'moment';
+import BoolSelector from './BoolSelector';
 
 class Entry extends React.Component {
     constructor(props) {
@@ -20,12 +21,7 @@ class Entry extends React.Component {
             this.icon = <FontAwesomeIcon icon={faFileWord} />
         }
         if (this.props.type === configTypes.BOOL) {
-            this.type = (
-                <select defaultValue=" -- select an option -- ">
-                    <option> -- select an option -- </option>
-                    <option>true</option>
-                    <option>false</option>
-                </select>)
+            this.type = <BoolSelector></BoolSelector>
             this.icon = <FontAwesomeIcon icon={faQuestion} />
         }
         if (this.props.type === configTypes.DATETIME) {

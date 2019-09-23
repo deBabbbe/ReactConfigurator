@@ -12,6 +12,10 @@ td {
 #addButton {
   margin-left: 10px;
 }
+#saveButton {
+  margin-left: 10px;
+  float: right;
+}
 table {
   width: 100%;
   margin: 10px 0;
