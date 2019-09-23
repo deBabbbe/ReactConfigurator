@@ -44,12 +44,12 @@ class App extends React.Component {
     return (
       <div className="App">
         <header className="App-header">
+          <button id="addButton" onClick={this.addEntry} title="Hinzufügen">Hinzufügen</button>
+          <button id="saveButton" onClick={this.save} title="Speichern">Speichern</button>
           <ConfigFileSelector configFileChanged={this.configFileChanged}></ConfigFileSelector>
           <table>
             <Entries data={this.state.data} removeEntry={this.removeEntry}></Entries>
           </table>
-          <button id="addButton" onClick={this.addEntry}>Hinzufügen</button>
-          <button id="saveButton" onClick={this.save}>Speichern</button>
         </header>
       </div>
     );
