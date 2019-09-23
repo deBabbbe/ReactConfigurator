@@ -22,7 +22,7 @@ class Entry extends React.Component {
                     <td><input defaultValue={this.props.config} /></td>
                     <td title={this.props.type}>{this.icon}</td>
                     <td>{this.tag}</td>
-                    <td><FontAwesomeIcon icon={faBan} title="Löschen" onClick={this.removeEntry} /></td>
+                    <td><FontAwesomeIcon id="removeButton" icon={faBan} title="Löschen" onClick={this.removeEntry} /></td>
                 </tr>
             </tbody >
         );

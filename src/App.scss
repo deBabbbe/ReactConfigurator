@@ -12,8 +12,14 @@ td {
 }
 
 #saveButton {
-  margin: 10px 0 20px 0;
+  margin: 0 0 20px 0;
   float: right;
+  color: grey;
+}
+
+#addButton,
+#removeButton {
+  color: grey;
 }
 
 table {
@@ -37,6 +43,14 @@ select {
   width: 100%;
   padding-right: 10px;
   text-align-last: center;
+
+}
+
+#configFile {
+  font-size: 30px;
+  margin-bottom: 20px;
+  color: black;
+  background: grey;
 }
 
 input {
