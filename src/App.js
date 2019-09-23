@@ -4,6 +4,8 @@ import Entries from './Components/Entries';
 import ConfigFileSelector from './Components/ConfigFileSelector'
 import configEntries from "./DataTypes/ConfigEntries";
 import configTypes from './DataTypes/ConfigTypes';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSave, faPlusSquare } from '@fortawesome/free-solid-svg-icons'
 
 const uuidv4 = require('uuid/v4');
 
@@ -44,8 +46,8 @@ class App extends React.Component {
     return (
       <div className="App">
         <header className="App-header">
-          <button id="addButton" onClick={this.addEntry} title="Hinzufügen">Hinzufügen</button>
-          <button id="saveButton" onClick={this.save} title="Speichern">Speichern</button>
+          <FontAwesomeIcon id="addButton" icon={faPlusSquare} title="Hinzufügen" onClick={this.addEntry} />
+          <FontAwesomeIcon id="saveButton" icon={faSave} title="Speichern" onClick={this.save} />
           <ConfigFileSelector configFileChanged={this.configFileChanged}></ConfigFileSelector>
           <table>
             <Entries data={this.state.data} removeEntry={this.removeEntry}></Entries>
