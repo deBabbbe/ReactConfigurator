@@ -49,11 +49,9 @@ class App extends React.Component {
     return (
       <div className="App">
         <ApplicationBar />
-        <ActionBar />
+        <ActionBar addEntry={this.addEntry} save={this.save} />
         <ConfigBar configFileChanged={this.configFileChanged} />
         <header className="App-header">
-          <FontAwesomeIcon id="addButton" icon={faPlusSquare} size="2x" title="Hinzufügen" onClick={this.addEntry} />
-          <FontAwesomeIcon id="saveButton" icon={faSave} size="2x" title="Speichern" onClick={this.save} />
           <ConfigFileSelector configFileChanged={this.configFileChanged}></ConfigFileSelector>
           <table>
             <Entries data={this.state.data} removeEntry={this.removeEntry}></Entries>

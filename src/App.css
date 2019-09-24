@@ -16,6 +16,7 @@
   background-color: #293b51;
   color: white;
   padding: 10px;
+  user-select: none;
 }
 .ConfigBar {
   float: left;
@@ -27,12 +28,12 @@ th,
 td {
   border: 0.5px solid;
 }
-#saveButton {
-  margin: 0 0 20px 0;
+#saveButton,
+#addButton {
+  margin: 0 10px 0 0;
   float: right;
-  color: grey;
+  color: white;
 }
-#addButton,
 #removeButton {
   color: grey;
 }

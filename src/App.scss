@@ -17,7 +17,8 @@
   font-size: 20px;
   background-color: #293B51;
   color: white;
-  padding: 10px
+  padding: 10px;
+  user-select: none;
 }
 
 .ConfigBar {
@@ -32,13 +33,13 @@ td {
   border: 0.5px solid;
 }
 
-#saveButton {
-  margin: 0 0 20px 0;
+#saveButton,
+#addButton {
+  margin: 0 10px 0 0;
   float: right;
-  color: grey;
+  color: white;
 }
 
-#addButton,
 #removeButton {
   color: grey;
 }
