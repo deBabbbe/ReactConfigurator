@@ -1,6 +1,6 @@
 .App-header {
   background-color: #282c34;
-  min-height: 100vh;
+  height: 500px;
   font-size: calc(10px + 2vmin);
   color: white;
   padding: 50px;
@@ -21,7 +21,7 @@
 .ConfigBar {
   float: left;
   width: 40px;
-  min-height: 100vh;
+  height: 600px;
   background-color: #e4842b;
 }
 th,
