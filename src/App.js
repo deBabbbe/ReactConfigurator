@@ -1,3 +1,5 @@
+import { ActionBar } from './Components/ActionBar';
+import { ApplicationBar } from './Components/ApplicationBar';
 import React from 'react';
 import './App.scss';
 import Entries from './Components/Entries';
@@ -45,6 +47,8 @@ class App extends React.Component {
   render = () => {
     return (
       <div className="App">
+        <ApplicationBar />
+        <ActionBar />
         <header className="App-header">
           <FontAwesomeIcon id="addButton" icon={faPlusSquare} size="2x" title="Hinzufügen" onClick={this.addEntry} />
           <FontAwesomeIcon id="saveButton" icon={faSave} size="2x" title="Speichern" onClick={this.save} />

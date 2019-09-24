@@ -5,6 +5,18 @@
   color: white;
   padding: 50px;
 }
+.ApplicationBar {
+  font-size: 25px;
+  background-color: #55717f;
+  color: white;
+  padding: 10px;
+}
+.ActionBar {
+  font-size: 20px;
+  background-color: #293b51;
+  color: white;
+  padding: 10px;
+}
 th,
 td {
   border: 0.5px solid;
