@@ -29,10 +29,23 @@
 }
 #saveButton,
 #addButton,
-#refreshButton {
+#refreshButton,
+#userIcon {
   margin: 0 15px 0 0;
   float: right;
   color: white;
+}
+#userName {
+  margin: 0 15px 0 0;
+  float: right;
+  color: white;
+  font-size: 16px;
+}
+#applicationBarDefaultIcon {
+  margin: 5px 15px 0 0;
+  float: right;
+  color: white;
+  font-size: 16px;
 }
 #removeButton {
   color: grey;
