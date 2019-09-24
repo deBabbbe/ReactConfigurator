@@ -1,3 +1,4 @@
+import { ConfigBar } from './Components/ConfigBar';
 import { ActionBar } from './Components/ActionBar';
 import { ApplicationBar } from './Components/ApplicationBar';
 import React from 'react';
@@ -49,6 +50,7 @@ class App extends React.Component {
       <div className="App">
         <ApplicationBar />
         <ActionBar />
+        <ConfigBar configFileChanged={this.configFileChanged} />
         <header className="App-header">
           <FontAwesomeIcon id="addButton" icon={faPlusSquare} size="2x" title="Hinzufügen" onClick={this.addEntry} />
           <FontAwesomeIcon id="saveButton" icon={faSave} size="2x" title="Speichern" onClick={this.save} />

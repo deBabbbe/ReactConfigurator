@@ -17,6 +17,12 @@
   color: white;
   padding: 10px;
 }
+.ConfigBar {
+  float: left;
+  width: 40px;
+  min-height: 100vh;
+  background-color: #e4842b;
+}
 th,
 td {
   border: 0.5px solid;
