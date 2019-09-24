@@ -32,11 +32,6 @@
   background-color: #E4842B;
 }
 
-th,
-td {
-  border: 0.5px solid;
-}
-
 #saveButton,
 #addButton {
   margin: 0 10px 0 0;
@@ -55,14 +50,8 @@ table {
 
 td {
   width: 100%;
-  min-width: 150px;
   padding-right: 10px;
   vertical-align: center;
-}
-
-.tdType,
-.tdIcon {
-  min-width: 0;
 }
 
 select {
@@ -82,4 +71,8 @@ select {
 input {
   width: 100%;
   box-sizing: border-box;
+}
+
+.entryTag {
+  min-width: 230px;
 }

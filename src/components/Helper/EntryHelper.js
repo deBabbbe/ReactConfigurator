@@ -2,7 +2,7 @@ import React from 'react';
 import moment from 'moment';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFileWord, faQuestion, faClock } from '@fortawesome/free-solid-svg-icons'
-import BoolSelector from '../BoolSelector';
+import BoolSelector from './BoolSelector';
 import configTypes from '../../DataTypes/ConfigTypes';
 
 function getDate() {
