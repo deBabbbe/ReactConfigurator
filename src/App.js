@@ -7,8 +7,6 @@ import Entries from './Components/Entries';
 import ConfigFileSelector from './Components/ConfigFileSelector'
 import configEntries from "./DataTypes/ConfigEntries";
 import configTypes from './DataTypes/ConfigTypes';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSave, faPlusSquare } from '@fortawesome/free-solid-svg-icons'
 
 const uuidv4 = require('uuid/v4');
 
