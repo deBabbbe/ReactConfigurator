@@ -3,7 +3,7 @@
   height: 500px;
   font-size: calc(10px + 2vmin);
   color: white;
-  padding: 50px;
+  padding: 10px 50px 50px 50px;
 }
 
 .ApplicationBar {
@@ -15,6 +15,7 @@
 
 .configBarIcon {
   cursor: pointer;
+  margin-top: 3px;
 }
 
 .ActionBar {
@@ -28,7 +29,6 @@
 .ConfigBar {
   float: left;
   width: 40px;
-  height: 600px;
   background-color: #E4842B;
 }
 
@@ -91,4 +91,16 @@ input {
 
 .entryTag {
   min-width: 230px;
+}
+
+.ConfigBarSplitter {
+  width: 40px;
+  border-bottom: 4px solid black;
+  position: absolute;
+  border-color: white;
+}
+
+.ConfigBarFiller {
+  height: 400px;
+  background-color: #293B51;
 }
