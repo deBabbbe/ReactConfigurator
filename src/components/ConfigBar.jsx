@@ -8,7 +8,7 @@ import { ReactComponent as SkypeIcon } from '../icons/Skype.svg'
 function getIconForName(name, configFileChanged) {
     let icon;
     if (name === "web.config") {
-        icon = <WebConfigIcon title={name} width="40px" height="40px"
+        icon = <WebConfigIcon className="configBarIcon" title={name} width="40px" height="40px"
             onClick={() => configFileChanged({
                 target: {
                     value: name
@@ -16,7 +16,7 @@ function getIconForName(name, configFileChanged) {
             })} />
     }
     if (name === "EmailImporter.exe.config") {
-        icon = <EmailIcon title={name} width="40px" height="40px"
+        icon = <EmailIcon className="configBarIcon" title={name} width="40px" height="40px"
             onClick={() => configFileChanged({
                 target: {
                     value: name
@@ -24,7 +24,7 @@ function getIconForName(name, configFileChanged) {
             })} />
     }
     if (name === "SmoopeImporter.exe.config") {
-        icon = <SmoopeIcon title={name} width="40px" height="40px"
+        icon = <SmoopeIcon className="configBarIcon" title={name} width="40px" height="40px"
             onClick={() => configFileChanged({
                 target: {
                     value: name
@@ -32,7 +32,7 @@ function getIconForName(name, configFileChanged) {
             })} />
     }
     if (name === "SkypeImporter.exe.config") {
-        icon = <SkypeIcon title={name} width="40px" height="40px"
+        icon = <SkypeIcon className="configBarIcon" title={name} width="40px" height="40px"
             onClick={() => configFileChanged({
                 target: {
                     value: name

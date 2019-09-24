@@ -7,10 +7,14 @@
 }
 
 .ApplicationBar {
-  font-size: 25px;
+  font-size: 20px;
   background-color: #55717F;
   color: white;
   padding: 10px;
+}
+
+.configBarIcon {
+  cursor: pointer;
 }
 
 .ActionBar {
