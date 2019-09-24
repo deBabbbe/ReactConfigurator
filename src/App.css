@@ -28,8 +28,9 @@
   background-color: #e4842b;
 }
 #saveButton,
-#addButton {
-  margin: 0 10px 0 0;
+#addButton,
+#refreshButton {
+  margin: 0 15px 0 0;
   float: right;
   color: white;
 }
