@@ -1,9 +1,11 @@
 import React from "../../node_modules/react";
 import { FontAwesomeIcon } from '../../node_modules/@fortawesome/react-fontawesome'
 import { faUser, faQuestionCircle, faExclamationTriangle, faInfoCircle, faPowerOff } from '../../node_modules/@fortawesome/free-solid-svg-icons'
+// import { ReactComponent as Logo } from '../icons/Logo.svg'
 
 export function ApplicationBar() {
     return <div className="ApplicationBar">
+        {/* <Logo width="60px" height="60px"></Logo> */}
         smart FLOW
         <FontAwesomeIcon id="userIcon" icon={faUser} size="lg" title="Speichern" />
         <p id="userName">Ritter, Claudia</p>
