@@ -14,9 +14,8 @@ class App extends React.Component {
   constructor() {
     super();
     const configs = configEntries.find(c => c.fileName === "web.config").configs
-    configs.forEach(entry => Object.assign(entry, { key: uuidv4() }))
     this.state = {
-      data: configs
+      data: configs.map(entry => Object.assign(entry, { key: uuidv4() }))
     }
   }
 
