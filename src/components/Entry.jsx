@@ -1,6 +1,6 @@
-import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBan } from '@fortawesome/free-solid-svg-icons'
+import React from '../../node_modules/react';
+import { FontAwesomeIcon } from '../../node_modules/@fortawesome/react-fontawesome'
+import { faBan } from '../../node_modules/@fortawesome/free-solid-svg-icons'
 import getContentDependingOnType from './Helper/EntryHelper'
 
 class Entry extends React.Component {

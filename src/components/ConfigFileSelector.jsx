@@ -1,4 +1,4 @@
-import React from "react";
+import React from "../../node_modules/react";
 
 export default function ConfigFileSelector({ configFileChanged }) {
     return (<select id="configFile" onChange={configFileChanged}>

@@ -1,7 +1,7 @@
-import React from 'react';
-import moment from 'moment';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faFileWord, faQuestion, faClock } from '@fortawesome/free-solid-svg-icons'
+import React from '../../../node_modules/react';
+import moment from '../../../node_modules/moment';
+import { FontAwesomeIcon } from '../../../node_modules/@fortawesome/react-fontawesome'
+import { faFileWord, faQuestion, faClock } from '../../../node_modules/@fortawesome/free-solid-svg-icons'
 import BoolSelector from './BoolSelector';
 import configTypes from '../../DataTypes/ConfigTypes';
 

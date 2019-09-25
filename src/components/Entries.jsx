@@ -1,5 +1,5 @@
-import React from 'react';
-import Entry from '../Components/Entry';
+import React from '../../node_modules/react';
+import Entry from './Entry';
 
 function Entries(props) {
     let result = [];
