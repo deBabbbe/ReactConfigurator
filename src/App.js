@@ -1,3 +1,4 @@
+import { SearchBar } from './Components/SearchBar';
 import { ConfigBar } from './Components/ConfigBar';
 import { ActionBar } from './Components/ActionBar';
 import { ApplicationBar } from './Components/ApplicationBar';
@@ -42,6 +43,14 @@ class App extends React.Component {
     });
   }
 
+  filterConfigs = (filterValue) => {
+    console.warn(this.state.data[0].config);
+    const data = this.state.data.filter(data => data.config.includes(filterValue));
+    this.setState({
+      data: data
+    });
+  }
+
   render = () => {
     return (
       <div className="App">
@@ -49,6 +58,7 @@ class App extends React.Component {
         <ActionBar addEntry={this.addEntry} save={this.save} />
         <ConfigBar configFileChanged={this.configFileChanged} />
         <header className="App-header">
+          <SearchBar filterConfigs={this.filterConfigs} />
           <ConfigFileSelector configFileChanged={this.configFileChanged}></ConfigFileSelector>
           <table>
             <Entries data={this.state.data} removeEntry={this.removeEntry}></Entries>

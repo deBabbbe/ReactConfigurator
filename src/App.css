@@ -1,6 +1,6 @@
 .App-header {
   background-color: #282c34;
-  height: 500px;
+  height: 830px;
   font-size: calc(10px + 2vmin);
   color: white;
   padding: 10px 50px 50px 50px;
@@ -70,6 +70,11 @@ select {
   color: black;
   background: grey;
 }
+#searchBar {
+  font-size: 30px;
+  margin-bottom: 20px;
+  color: black;
+}
 input {
   width: 100%;
   box-sizing: border-box;
@@ -84,6 +89,6 @@ input {
   border-color: white;
 }
 .ConfigBarFiller {
-  height: 400px;
+  height: 700px;
   background-color: #293b51;
 }
