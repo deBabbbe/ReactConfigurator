@@ -1,4 +1,4 @@
-import React from "../../../node_modules/react";
+import React from 'react';
 
 export default function BoolSelector() {
     return <select defaultValue=" -- select an option -- ">

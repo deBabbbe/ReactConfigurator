@@ -1,15 +1,15 @@
-import React from '../../../node_modules/react';
+import React from 'react';
 import moment from '../../../node_modules/moment';
-import { FontAwesomeIcon } from '../../../node_modules/@fortawesome/react-fontawesome'
-import { faFileWord, faQuestion, faClock } from '../../../node_modules/@fortawesome/free-solid-svg-icons'
 import BoolSelector from './BoolSelector';
 import configTypes from '../../DataTypes/ConfigTypes';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faFileWord, faQuestion, faClock } from '@fortawesome/free-solid-svg-icons';
 
 function getDate() {
     return moment().format('YYYY-MM-DDTHH:mm:ss');
 }
 
-export default function getContentDependingOnType(type) {
+export default function getContentDependingOnType(type: string) {
     let tag;
     let icon;
     if (type === configTypes.STRING) {

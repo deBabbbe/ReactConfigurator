@@ -1,6 +1,16 @@
 import configTypes from './ConfigTypes'
 
-const configEntries = [
+export interface configEntry {
+    config: string,
+    type: string
+}
+
+export interface fileConfigEntry {
+    fileName: string,
+    configs: configEntry[]
+}
+
+const configEntries: fileConfigEntry[] = [
     {
         fileName: "web.config",
         configs: [

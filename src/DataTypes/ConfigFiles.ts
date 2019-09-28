@@ -1,4 +1,4 @@
-const configFiles = [
+const configFiles: string[] = [
     "web.config",
     "EmailImporter.exe.config",
     "SmoopeImporter.exe.config",

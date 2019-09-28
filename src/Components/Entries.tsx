@@ -1,8 +1,13 @@
-import React from '../../node_modules/react';
+import React from 'react';
 import Entry from './Entry';
 
-function Entries(props) {
-    let result = [];
+type EntriesProps = {
+    data: any[];
+    removeEntry: any;
+}
+
+function Entries(props: EntriesProps) {
+    let result: any[] = [];
     props.data.forEach(function (entry) {
         result.push(<Entry key={entry.key} id={entry.key} config={entry.config} type={entry.type} removeEntry={props.removeEntry}></Entry>)
     })

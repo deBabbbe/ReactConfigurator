@@ -1,48 +1,52 @@
-import React from "../../node_modules/react";
+import React from "react";
 import configFiles from '../DataTypes/ConfigFiles'
 import { ReactComponent as WebConfigIcon } from '../icons/Web.svg'
 import { ReactComponent as EmailIcon } from '../icons/Email.svg'
 import { ReactComponent as SmoopeIcon } from '../icons/Smoope.svg'
 import { ReactComponent as SkypeIcon } from '../icons/Skype.svg'
 
-function getIconForName(name, configFileChanged) {
+function getIconForName(name: string, configFileChanged: any) {
     let icon;
     if (name === "web.config") {
-        icon = <WebConfigIcon className="configBarIcon" title={name} width="40px" height="40px"
+        icon = <span title={name}><WebConfigIcon className="configBarIcon" width="40px" height="40px"
             onClick={() => configFileChanged({
                 target: {
                     value: name
                 }
-            })} />
+            })} /></span>
     }
     if (name === "EmailImporter.exe.config") {
-        icon = <EmailIcon className="configBarIcon" title={name} width="40px" height="40px"
+        icon = <span title={name}><EmailIcon className="configBarIcon" width="40px" height="40px"
             onClick={() => configFileChanged({
                 target: {
                     value: name
                 }
-            })} />
+            })} /></span>
     }
     if (name === "SmoopeImporter.exe.config") {
-        icon = <SmoopeIcon className="configBarIcon" title={name} width="40px" height="40px"
+        icon = <span title={name}> <SmoopeIcon className="configBarIcon" width="40px" height="40px"
             onClick={() => configFileChanged({
                 target: {
                     value: name
                 }
-            })} />
+            })} /></span>
     }
     if (name === "SkypeImporter.exe.config") {
-        icon = <SkypeIcon className="configBarIcon" title={name} width="40px" height="40px"
+        icon = <span title={name}><SkypeIcon className="configBarIcon" width="40px" height="40px"
             onClick={() => configFileChanged({
                 target: {
                     value: name
                 }
-            })} />
+            })} /></span>
     }
     return icon;
 }
 
-export function ConfigBar(props) {
+type ConfigBarProps = {
+    configFileChanged: any;
+}
+
+export function ConfigBar(props: ConfigBarProps) {
     return <div className="ConfigBar">
         <div>
             {configFiles.map(config => {
