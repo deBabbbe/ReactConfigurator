@@ -5,14 +5,14 @@ import getContentDependingOnType from './Helper/EntryHelper'
 
 type EntryProps = {
     type: string;
-    removeEntry: any;
+    removeEntry: (key: string) => void;
     id: string;
     config: string;
 }
 
 class Entry extends React.Component<EntryProps> {
-    tag: any;
-    icon: any;
+    tag: JSX.Element;
+    icon: JSX.Element;
 
     constructor(props: EntryProps) {
         super(props)

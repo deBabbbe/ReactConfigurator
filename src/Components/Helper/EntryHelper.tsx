@@ -9,20 +9,25 @@ function getDate() {
     return moment().format('YYYY-MM-DDTHH:mm:ss');
 }
 
-export default function getContentDependingOnType(type: string) {
+type EntryContentResult = {
+    tag: JSX.Element;
+    icon: JSX.Element;
+}
+
+export default function getContentDependingOnType(type: string): EntryContentResult {
     let tag;
     let icon;
-    if (type === configTypes.STRING) {
-        tag = <input placeholder="Please fill value"></input>
-        icon = <FontAwesomeIcon icon={faFileWord} />
-    }
     if (type === configTypes.BOOL) {
         tag = <BoolSelector></BoolSelector>
         icon = <FontAwesomeIcon icon={faQuestion} />
     }
-    if (type === configTypes.DATETIME) {
+    else if (type === configTypes.DATETIME) {
         tag = <input type="datetime-local" defaultValue={getDate()}></input>
         icon = <FontAwesomeIcon icon={faClock} />
+    }
+    else {
+        tag = <input placeholder="Please fill value"></input>
+        icon = <FontAwesomeIcon icon={faFileWord} />
     }
     return { tag, icon };
 }
