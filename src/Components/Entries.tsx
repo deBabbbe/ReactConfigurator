@@ -9,11 +9,9 @@ type EntriesProps = {
 
 class Entries extends React.Component<EntriesProps> {
     render() {
-        let result: any[] = [];
-        this.props.data.forEach(entry => {
-            result.push(<Entry key={entry.key} id={entry.key} config={entry.config} type={entry.type} removeEntry={this.props.removeEntry}></Entry>)
-        })
-        return result;
+        return this.props.data.map(entry => {
+            return <Entry key={entry.key} id={entry.key} config={entry.config} type={entry.type} removeEntry={this.props.removeEntry}></Entry>
+        });
     }
 }
 
