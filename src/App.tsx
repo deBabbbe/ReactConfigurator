@@ -38,7 +38,7 @@ class App extends React.Component<{}, AppProps> {
     this.setState({ data: newState })
   }
 
-  configFileChanged = (event: any) => {
+  configFileChanged = (event: { target: { value: string } }): void => {
     const configs = configEntries.find(c => c.fileName === event.target.value)!.configs
     configs.forEach(entry => Object.assign(entry, { key: uuidv4() }))
 

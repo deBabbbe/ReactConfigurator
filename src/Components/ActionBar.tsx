@@ -2,7 +2,12 @@ import * as React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faRedoAlt, faSave, faPlusSquare } from '@fortawesome/free-solid-svg-icons';
 
-export function ActionBar(props: any) {
+type ActionBarProps = {
+    save: any;
+    addEntry: any;
+}
+
+export function ActionBar(props: ActionBarProps) {
     return <div className="ActionBar">
         Configurator
         <span id="refreshButton">
@@ -14,5 +19,5 @@ export function ActionBar(props: any) {
         <span id="addButton" onClick={props.addEntry}>
             <FontAwesomeIcon icon={faPlusSquare} size="lg" title="Hinzufügen" />
         </span>
-    </div >;
+    </div>;
 }

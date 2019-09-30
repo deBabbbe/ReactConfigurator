@@ -5,7 +5,7 @@ import { ReactComponent as EmailIcon } from '../icons/Email.svg'
 import { ReactComponent as SmoopeIcon } from '../icons/Smoope.svg'
 import { ReactComponent as SkypeIcon } from '../icons/Skype.svg'
 
-function getIconForName(name: string, configFileChanged: any) {
+function getIconForName(name: string, configFileChanged: (event: { target: { value: string } }) => void) {
     let icon;
     if (name === "web.config") {
         icon = <span title={name}><WebConfigIcon className="configBarIcon" width="40px" height="40px"
@@ -43,7 +43,7 @@ function getIconForName(name: string, configFileChanged: any) {
 }
 
 type ConfigBarProps = {
-    configFileChanged: any;
+    configFileChanged: (event: { target: { value: string } }) => void;
 }
 
 export function ConfigBar(props: ConfigBarProps) {
