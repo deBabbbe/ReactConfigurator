@@ -3,8 +3,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faRedoAlt, faSave, faPlusSquare } from '@fortawesome/free-solid-svg-icons';
 
 type ActionBarProps = {
-    save: any;
-    addEntry: any;
+    save: () => void;
+    addEntry: () => void;
 }
 
 export function ActionBar(props: ActionBarProps) {

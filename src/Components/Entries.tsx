@@ -4,7 +4,7 @@ import { configEntry } from '../DataTypes/ConfigEntries';
 
 type EntriesProps = {
     data: configEntry[];
-    removeEntry: any;
+    removeEntry: (key: string) => void;
 }
 
 class Entries extends React.Component<EntriesProps> {

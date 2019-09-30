@@ -1,7 +1,7 @@
 import React from 'react';
 
 type ConfigFileSelectorProps = {
-    configFileChanged: any
+    configFileChanged: (event: { target: { value: string } }) => void;
 }
 
 export default function ConfigFileSelector(props: ConfigFileSelectorProps) {
