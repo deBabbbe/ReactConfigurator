@@ -6,15 +6,19 @@ import React from 'react';
 import './App.scss';
 import Entries from './Components/Entries';
 import ConfigFileSelector from './Components/ConfigFileSelector'
-import configEntries from "./DataTypes/ConfigEntries";
+import configEntries, { configEntry } from "./DataTypes/ConfigEntries";
 import configTypes from './DataTypes/ConfigTypes';
 
 const uuidv4 = require('uuid/v4');
 
-class App extends React.Component {
-  constructor() {
-    super();
-    const configs = configEntries.find(c => c.fileName === "web.config").configs
+type AppProps = {
+  data: configEntry[]
+}
+
+class App extends React.Component<{}, AppProps> {
+  constructor(props: AppProps) {
+    super(props);
+    const configs = configEntries.find(c => c.fileName === "web.config")!.configs
     this.state = {
       data: configs.map(entry => Object.assign(entry, { key: uuidv4() }))
     }
@@ -29,13 +33,13 @@ class App extends React.Component {
     alert("gespeichert")
   }
 
-  removeEntry = (key) => {
-    const newState = this.state.data.filter(function (d) { return d.key !== key });
+  removeEntry = (key: string) => {
+    const newState = this.state.data.filter((d) => { return d.key !== key });
     this.setState({ data: newState })
   }
 
-  configFileChanged = (event) => {
-    const configs = configEntries.find(c => c.fileName === event.target.value).configs
+  configFileChanged = (event: any) => {
+    const configs = configEntries.find(c => c.fileName === event.target.value)!.configs
     configs.forEach(entry => Object.assign(entry, { key: uuidv4() }))
 
     this.setState({
@@ -43,8 +47,7 @@ class App extends React.Component {
     });
   }
 
-  filterConfigs = (filterValue) => {
-    console.warn(this.state.data[0].config);
+  filterConfigs = (filterValue: string) => {
     const data = this.state.data.filter(data => data.config.includes(filterValue));
     this.setState({
       data: data
