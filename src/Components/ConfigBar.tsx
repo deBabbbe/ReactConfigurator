@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react'
 import configFiles from '../DataTypes/ConfigFiles'
 import { ReactComponent as WebConfigIcon } from '../icons/Web.svg'
 import { ReactComponent as EmailIcon } from '../icons/Email.svg'

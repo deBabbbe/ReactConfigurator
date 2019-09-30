@@ -1,6 +1,6 @@
-import * as React from "react";
+import * as React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faRedoAlt, faSave, faPlusSquare } from "@fortawesome/free-solid-svg-icons";
+import { faRedoAlt, faSave, faPlusSquare } from '@fortawesome/free-solid-svg-icons';
 
 export function ActionBar(props: any) {
     return <div className="ActionBar">
