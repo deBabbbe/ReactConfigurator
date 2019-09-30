@@ -1,11 +1,11 @@
 import React from 'react';
 
 type SearchBarProps = {
-    filterConfigs: any
+    filterConfigs: (filter: string) => void;
 }
 
 export class SearchBar extends React.Component<SearchBarProps> {
-    guggemol = (event: any) => {
+    changeFilter = (event: React.ChangeEvent<HTMLInputElement>) => {
         event.persist()
         console.warn(event.target.value)
         this.props.filterConfigs(event.target.value)
@@ -13,7 +13,7 @@ export class SearchBar extends React.Component<SearchBarProps> {
 
     render() {
         return <div id="searchBar">
-            <input onChange={this.guggemol}></input>
+            <input onChange={this.changeFilter}></input>
         </div>;
     }
 }
