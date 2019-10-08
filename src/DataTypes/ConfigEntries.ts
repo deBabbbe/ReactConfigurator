@@ -1,4 +1,4 @@
-import configTypes from './ConfigTypes'
+import configTypes from './Constants/ConfigTypes'
 
 export interface configEntry {
     config: string,

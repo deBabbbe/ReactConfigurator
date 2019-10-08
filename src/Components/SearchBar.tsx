@@ -7,7 +7,6 @@ type SearchBarProps = {
 export class SearchBar extends React.Component<SearchBarProps> {
     changeFilter = (event: React.ChangeEvent<HTMLInputElement>) => {
         event.persist()
-        console.warn(event.target.value)
         this.props.filterConfigs(event.target.value)
     }
 

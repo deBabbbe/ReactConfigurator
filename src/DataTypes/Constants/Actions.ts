@@ -1,0 +1,1 @@
+export const ADD_CONFIG_ENTRY = "AddConfigEntry";

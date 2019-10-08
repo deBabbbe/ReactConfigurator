@@ -1,5 +1,5 @@
 import React from 'react'
-import configFiles from '../DataTypes/ConfigFiles'
+import configFiles from '../DataTypes/Constants/ConfigFiles'
 import { ReactComponent as WebConfigIcon } from '../icons/Web.svg'
 import { ReactComponent as EmailIcon } from '../icons/Email.svg'
 import { ReactComponent as SmoopeIcon } from '../icons/Smoope.svg'

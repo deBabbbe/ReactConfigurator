@@ -1,7 +1,7 @@
 import React from 'react';
 import moment from '../../../node_modules/moment';
 import BoolSelector from './BoolSelector';
-import configTypes from '../../DataTypes/ConfigTypes';
+import configTypes from '../../DataTypes/Constants/ConfigTypes';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFileWord, faQuestion, faClock } from '@fortawesome/free-solid-svg-icons';
 
