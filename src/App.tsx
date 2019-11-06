@@ -8,8 +8,6 @@ import Entries from './Components/Entries';
 import ConfigFileSelector from './Components/ConfigFileSelector'
 import configEntries, { configEntry } from "./DataTypes/ConfigEntries";
 import configTypes from './DataTypes/Constants/ConfigTypes';
-// import store from './Store/index';
-// import { addConfigEntry } from './Actions';
 import uuidv4 from 'uuid/v4';
 
 type AppProps = {
@@ -19,9 +17,6 @@ type AppProps = {
 class App extends React.Component<{}, AppProps> {
   constructor(props: AppProps) {
     super(props);
-    // console.warn("do is de state", store.getState());
-    // store.subscribe(() => console.warn("neuer store", store.getState()))
-    // store.dispatch(addConfigEntry({ key: "blubb" }))
     const configs = configEntries.find(c => c.fileName === "web.config")!.configs
     this.state = {
       data: configs.map(entry => Object.assign(entry, { key: uuidv4() }))
