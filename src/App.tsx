@@ -7,8 +7,8 @@ import './App.scss';
 import Entries from './Components/Entries';
 import ConfigFileSelector from './Components/ConfigFileSelector'
 import configEntries, { configEntry } from "./DataTypes/ConfigEntries";
-import configTypes from './DataTypes/Constants/ConfigTypes';
 import uuidv4 from 'uuid/v4';
+import { Constants } from './DataTypes/Constants';
 
 type AppProps = {
   data: configEntry[]
@@ -24,7 +24,7 @@ class App extends React.Component<{}, AppProps> {
   }
 
   addEntry = () => {
-    const entryToInsert = { config: "", type: configTypes.STRING, key: uuidv4() }
+    const entryToInsert = { config: "", type: Constants.CONFIG_TYPES.STRING, key: uuidv4() }
     this.setState({ data: [...this.state.data, entryToInsert] })
   }
 

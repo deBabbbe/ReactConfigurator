@@ -1,9 +1,9 @@
 import React from 'react';
 import moment from '../../../node_modules/moment';
 import BoolSelector from './BoolSelector';
-import configTypes from '../../DataTypes/Constants/ConfigTypes';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFileWord, faQuestion, faClock } from '@fortawesome/free-solid-svg-icons';
+import { Constants } from '../../DataTypes/Constants';
 
 function getDate() {
     return moment().format('YYYY-MM-DDTHH:mm:ss');
@@ -17,11 +17,11 @@ type EntryContentResult = {
 export default function getContentDependingOnType(type: string): EntryContentResult {
     let tag;
     let icon;
-    if (type === configTypes.BOOL) {
+    if (type === Constants.CONFIG_TYPES.BOOL) {
         tag = <BoolSelector></BoolSelector>
         icon = <FontAwesomeIcon icon={faQuestion} />
     }
-    else if (type === configTypes.DATETIME) {
+    else if (type === Constants.CONFIG_TYPES.DATETIME) {
         tag = <input type="datetime-local" defaultValue={getDate()}></input>
         icon = <FontAwesomeIcon icon={faClock} />
     }

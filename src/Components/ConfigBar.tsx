@@ -1,9 +1,9 @@
 import React from 'react'
-import configFiles from '../DataTypes/Constants/ConfigFiles'
 import { ReactComponent as WebConfigIcon } from '../icons/Web.svg'
 import { ReactComponent as EmailIcon } from '../icons/Email.svg'
 import { ReactComponent as SmoopeIcon } from '../icons/Smoope.svg'
 import { ReactComponent as SkypeIcon } from '../icons/Skype.svg'
+import { Constants } from '../DataTypes/Constants'
 
 function getIconForName(name: string, configFileChanged: (event: { target: { value: string } }) => void) {
     let icon;
@@ -49,7 +49,7 @@ type ConfigBarProps = {
 export function ConfigBar(props: ConfigBarProps) {
     return <div className="ConfigBar">
         <div>
-            {configFiles.map(config => {
+            {Constants.CONFIG_FILES.map(config => {
                 return getIconForName(config, props.configFileChanged)
             })}
         </div>
