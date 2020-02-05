@@ -65,7 +65,7 @@ class App extends React.Component<{}, AppProps> {
   render = () => {
     return (
       <div className="App">
-        <ApplicationBar logout={this.logout} />
+        <ApplicationBar loggedOut={this.state.loggedOut} logout={this.logout} />
         <ActionBar loggedOut={this.state.loggedOut} addEntry={this.addEntry} save={this.save} />
         <ConfigBar configFileChanged={this.configFileChanged} />
         {this.state.loggedOut && <LogoutPage></LogoutPage>}
