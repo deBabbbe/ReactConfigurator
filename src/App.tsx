@@ -9,17 +9,22 @@ import ConfigFileSelector from './Components/ConfigFileSelector'
 import configEntries, { configEntry } from "./DataTypes/ConfigEntries";
 import uuidv4 from 'uuid/v4';
 import { Constants } from './DataTypes/Constants';
+import { LogoutPage } from './Components/LogoutPage';
 
 type AppProps = {
-  data: configEntry[]
+  data: configEntry[],
+  loggedOut: boolean
 }
 
 class App extends React.Component<{}, AppProps> {
+  private loggedOut: boolean = false;
+
   constructor(props: AppProps) {
     super(props);
     const configs = configEntries.find(c => c.fileName === "web.config")!.configs
     this.state = {
-      data: configs.map(entry => Object.assign(entry, { key: uuidv4() }))
+      data: configs.map(entry => Object.assign(entry, { key: uuidv4() })),
+      loggedOut: false
     }
   }
 
@@ -30,6 +35,11 @@ class App extends React.Component<{}, AppProps> {
 
   save = () => {
     alert("gespeichert")
+  }
+
+  logout = () => {
+    const loggedOut = !this.state.loggedOut
+    this.setState({ loggedOut });
   }
 
   removeEntry = (key: string) => {
@@ -56,10 +66,11 @@ class App extends React.Component<{}, AppProps> {
   render = () => {
     return (
       <div className="App">
-        <ApplicationBar />
+        <ApplicationBar logout={this.logout} />
         <ActionBar addEntry={this.addEntry} save={this.save} />
         <ConfigBar configFileChanged={this.configFileChanged} />
-        <header className="App-header">
+        {this.state.loggedOut && <LogoutPage></LogoutPage>}
+        <header className="App-header" hidden={this.state.loggedOut}>
           <SearchBar filterConfigs={this.filterConfigs} />
           <ConfigFileSelector configFileChanged={this.configFileChanged}></ConfigFileSelector>
           <table>
