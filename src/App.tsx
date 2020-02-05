@@ -67,7 +67,7 @@ class App extends React.Component<{}, AppProps> {
     return (
       <div className="App">
         <ApplicationBar logout={this.logout} />
-        <ActionBar addEntry={this.addEntry} save={this.save} />
+        <ActionBar loggedOut={this.state.loggedOut} addEntry={this.addEntry} save={this.save} />
         <ConfigBar configFileChanged={this.configFileChanged} />
         {this.state.loggedOut && <LogoutPage></LogoutPage>}
         <header className="App-header" hidden={this.state.loggedOut}>
