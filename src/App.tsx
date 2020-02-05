@@ -38,8 +38,7 @@ class App extends React.Component<{}, AppProps> {
   }
 
   logout = () => {
-    const loggedOut = !this.state.loggedOut
-    this.setState({ loggedOut });
+    this.setState((prevState) => { return { loggedOut: !prevState.loggedOut } });
   }
 
   removeEntry = (key: string) => {
