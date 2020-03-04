@@ -8,6 +8,7 @@ import {
     faPowerOff
 } from '../../node_modules/@fortawesome/free-solid-svg-icons'
 import { ReactComponent as Logo } from '../icons/Logo.svg'
+import { Constants } from '../DataTypes/Constants';
 
 type ApplicationBarProps = {
     logout: () => void;
@@ -31,6 +32,7 @@ export function ApplicationBar(props: ApplicationBarProps) {
         <span id="applicationBarDefaultIcon">
             <FontAwesomeIcon icon={faInfoCircle} size="lg" title="Informationen" />
         </span>
+        <span id="applicationBarVersion">{Constants.VERSION}</span>
         <span id="applicationBarDefaultIcon" onClick={props.logout} >
             <FontAwesomeIcon icon={faPowerOff} size="lg" title="Ausloggen" />
         </span>
