@@ -1,5 +1,6 @@
 export class Constants {
     public static readonly ADD_CONFIG_ENTRY: string = "AddConfigEntry";
+    public static readonly VERSION: string = "0.1";
 
     public static readonly CONFIG_FILES: string[] = [
         "web.config",
