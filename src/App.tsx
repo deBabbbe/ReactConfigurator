@@ -69,7 +69,8 @@ class App extends React.Component<{}, AppProps> {
   filterConfigs = (filterValue: string) => {
     localStorage.setItem("filterValue", filterValue ? filterValue : "")
     const filteredData = this.state.data.filter(data =>
-      data.config.toLowerCase().includes(filterValue.toLowerCase()));
+      data.config.contains(filterValue)
+    );
     this.setState({ filteredData });
   }
 
