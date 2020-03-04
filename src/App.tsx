@@ -13,6 +13,7 @@ import { LogoutPage } from './Components/LogoutPage';
 
 type AppProps = {
   data: configEntry[],
+  filteredData: configEntry[],
   loggedOut: boolean
 }
 
@@ -24,6 +25,7 @@ class App extends React.Component<{}, AppProps> {
     const configs = configEntries.find(c => c.fileName === "web.config")!.configs
     this.state = {
       data: configs.map(entry => Object.assign(entry, { key: uuidv4() })),
+      filteredData: configs.map(entry => Object.assign(entry, { key: uuidv4() })),
       loggedOut: false
     }
   }
@@ -51,14 +53,16 @@ class App extends React.Component<{}, AppProps> {
     configs.forEach(entry => Object.assign(entry, { key: uuidv4() }))
 
     this.setState({
-      data: configs
+      data: configs,
+      filteredData: configs
     });
   }
 
   filterConfigs = (filterValue: string) => {
-    const data = this.state.data.filter(data => data.config.includes(filterValue));
+    const filteredData = this.state.data.filter(data =>
+      data.config.toLowerCase().includes(filterValue.toLowerCase()));
     this.setState({
-      data: data
+      filteredData: filteredData
     });
   }
 
@@ -73,7 +77,7 @@ class App extends React.Component<{}, AppProps> {
           <SearchBar filterConfigs={this.filterConfigs} />
           <ConfigFileSelector configFileChanged={this.configFileChanged}></ConfigFileSelector>
           <table>
-            <Entries data={this.state.data} removeEntry={this.removeEntry}></Entries>
+            <Entries data={this.state.filteredData} removeEntry={this.removeEntry}></Entries>
           </table>
         </header>
       </div>
