@@ -2,6 +2,7 @@ import React from 'react';
 
 type SearchBarProps = {
     filterConfigs: (filter: string) => void;
+    filterText: string;
 }
 
 export class SearchBar extends React.Component<SearchBarProps> {
@@ -12,7 +13,7 @@ export class SearchBar extends React.Component<SearchBarProps> {
 
     render() {
         return <div id="searchBar">
-            <input onChange={this.changeFilter}></input>
+            <input onChange={this.changeFilter} defaultValue={this.props.filterText}></input>
         </div>;
     }
 }

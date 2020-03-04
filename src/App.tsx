@@ -14,7 +14,8 @@ import { LogoutPage } from './Components/LogoutPage';
 type AppProps = {
   data: configEntry[],
   filteredData: configEntry[],
-  loggedOut: boolean
+  loggedOut: boolean,
+  filterText: string
 }
 
 class App extends React.Component<{}, AppProps> {
@@ -26,8 +27,15 @@ class App extends React.Component<{}, AppProps> {
     this.state = {
       data: configs.map(entry => Object.assign(entry, { key: uuidv4() })),
       filteredData: configs.map(entry => Object.assign(entry, { key: uuidv4() })),
-      loggedOut: false
+      loggedOut: false,
+      filterText: ""
     }
+  }
+
+  componentDidMount = () => {
+    const prevFilter = localStorage.getItem("filterValue")?.toString() || "";
+    this.setState(() => { return { filterText: prevFilter } });
+    this.filterConfigs(prevFilter ? prevFilter : "")
   }
 
   addEntry = () => {
@@ -59,11 +67,10 @@ class App extends React.Component<{}, AppProps> {
   }
 
   filterConfigs = (filterValue: string) => {
+    localStorage.setItem("filterValue", filterValue ? filterValue : "")
     const filteredData = this.state.data.filter(data =>
       data.config.toLowerCase().includes(filterValue.toLowerCase()));
-    this.setState({
-      filteredData: filteredData
-    });
+    this.setState({ filteredData });
   }
 
   render = () => {
@@ -74,7 +81,7 @@ class App extends React.Component<{}, AppProps> {
         <ConfigBar configFileChanged={this.configFileChanged} />
         {this.state.loggedOut && <LogoutPage></LogoutPage>}
         <header className="App-header" hidden={this.state.loggedOut}>
-          <SearchBar filterConfigs={this.filterConfigs} />
+          <SearchBar filterConfigs={this.filterConfigs} filterText={this.state.filterText} />
           <ConfigFileSelector configFileChanged={this.configFileChanged}></ConfigFileSelector>
           <table>
             <Entries data={this.state.filteredData} removeEntry={this.removeEntry}></Entries>
