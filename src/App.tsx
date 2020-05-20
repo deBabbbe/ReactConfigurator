@@ -7,9 +7,9 @@ import './App.scss';
 import Entries from './Components/Entries';
 import ConfigFileSelector from './Components/ConfigFileSelector'
 import configEntries, { configEntry } from "./DataTypes/ConfigEntries";
-import uuidv4 from 'uuid/v4';
 import { Constants } from './DataTypes/Constants';
 import { LogoutPage } from './Components/LogoutPage';
+import { v4 as uuid } from 'uuid';
 
 type AppProps = {
   data: configEntry[],
@@ -25,8 +25,8 @@ class App extends React.Component<{}, AppProps> {
     super(props);
     const configs = configEntries.find(c => c.fileName === "web.config")!.configs
     this.state = {
-      data: configs.map(entry => Object.assign(entry, { key: uuidv4() })),
-      filteredData: configs.map(entry => Object.assign(entry, { key: uuidv4() })),
+      data: configs.map(entry => Object.assign(entry, { key: uuid() })),
+      filteredData: configs.map(entry => Object.assign(entry, { key: uuid() })),
       loggedOut: false,
       filterText: ""
     }
@@ -39,7 +39,7 @@ class App extends React.Component<{}, AppProps> {
   }
 
   addEntry = () => {
-    const entryToInsert = { config: "", type: Constants.CONFIG_TYPES.STRING, key: uuidv4() }
+    const entryToInsert = { config: "", type: Constants.CONFIG_TYPES.STRING, key: uuid() }
     this.setState({ data: [...this.state.data, entryToInsert] })
   }
 
@@ -58,7 +58,7 @@ class App extends React.Component<{}, AppProps> {
 
   configFileChanged = (event: { target: { value: string } }): void => {
     const configs = configEntries.find(c => c.fileName === event.target.value)!.configs
-    configs.forEach(entry => Object.assign(entry, { key: uuidv4() }))
+    configs.forEach(entry => Object.assign(entry, { key: uuid() }))
 
     this.setState({
       data: configs,
