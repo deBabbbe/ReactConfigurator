@@ -3,22 +3,24 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@fortawesome/fontawesome": "^1.1.8",
     "@fortawesome/fontawesome-svg-core": "^1.2.28",
     "@fortawesome/free-solid-svg-icons": "^5.13.0",
     "@fortawesome/react-fontawesome": "^0.1.9",
-    "@types/jest": "^25.2.3",
-    "@types/node": "^14.0.4",
     "@types/react": "^16.9.30",
     "@types/react-dom": "^16.9.8",
-    "@types/react-fontawesome": "^1.6.4",
     "@types/uuid": "^8.0.0",
+    "babel-eslint": "^10.1.0",
+    "eslint-config-react-app": "^5.2.1",
+    "eslint-plugin-flowtype": "^5.1.0",
+    "eslint-plugin-import": "^2.20.2",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-react": "^7.20.0",
+    "eslint-plugin-react-hooks": "^4.0.2",
     "moment": "^2.26.0",
     "node-sass": "^4.14.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-scripts": "^3.4.1",
-    "react-text-filter": "^3.0.2",
     "typescript": "^3.9.3",
     "uuid": "^8.1.0"
   },
@@ -44,7 +46,6 @@
     ]
   },
   "devDependencies": {
-    "@fortawesome/fontawesome-free": "^5.13.0",
     "@types/react": "^16.9.35"
   }
 }
