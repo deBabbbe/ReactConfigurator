@@ -52,8 +52,8 @@ class App extends React.Component<{}, AppProps> {
   }
 
   removeEntry = (key: string) => {
-    const newState = this.state.data.filter((d) => { return d.key !== key });
-    this.setState({ data: newState })
+    const newState = this.state.filteredData.filter((d) => { return d.key !== key });
+    this.setState({ filteredData: newState })
   }
 
   configFileChanged = (event: { target: { value: string } }): void => {
