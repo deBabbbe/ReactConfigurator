@@ -3,43 +3,29 @@ import { ReactComponent as WebConfigIcon } from '../icons/Web.svg'
 import { ReactComponent as EmailIcon } from '../icons/Email.svg'
 import { ReactComponent as SmoopeIcon } from '../icons/Smoope.svg'
 import { ReactComponent as SkypeIcon } from '../icons/Skype.svg'
-import { Constants } from '../DataTypes/Constants'
+import { Constants, ConfigFiles, ConfigFile } from '../DataTypes/Constants';
+
+const getIcon = (name: string): any => {
+    switch (name) {
+        case ConfigFile(ConfigFiles["web.config"]):
+            return WebConfigIcon;
+        case ConfigFile(ConfigFiles["EmailImporter.exe.config"]):
+            return EmailIcon;
+        case ConfigFile(ConfigFiles["SmoopeImporter.exe.config"]):
+            return SmoopeIcon;
+        case ConfigFile(ConfigFiles["SkypeImporter.exe.config"]):
+            return SkypeIcon;
+    }
+}
 
 function getIconForName(name: string, configFileChanged: (event: { target: { value: string } }) => void) {
-    let icon;
-    if (name === "web.config") {
-        icon = <span title={name}><WebConfigIcon className="configBarIcon" width="40px" height="40px"
-            onClick={() => configFileChanged({
-                target: {
-                    value: name
-                }
-            })} /></span>
-    }
-    if (name === "EmailImporter.exe.config") {
-        icon = <span title={name}><EmailIcon className="configBarIcon" width="40px" height="40px"
-            onClick={() => configFileChanged({
-                target: {
-                    value: name
-                }
-            })} /></span>
-    }
-    if (name === "SmoopeImporter.exe.config") {
-        icon = <span title={name}> <SmoopeIcon className="configBarIcon" width="40px" height="40px"
-            onClick={() => configFileChanged({
-                target: {
-                    value: name
-                }
-            })} /></span>
-    }
-    if (name === "SkypeImporter.exe.config") {
-        icon = <span title={name}><SkypeIcon className="configBarIcon" width="40px" height="40px"
-            onClick={() => configFileChanged({
-                target: {
-                    value: name
-                }
-            })} /></span>
-    }
-    return icon;
+    const Icon = getIcon(name);
+    return <span title={name}><Icon className="configBarIcon" width="40px" height="40px"
+        onClick={() => configFileChanged({
+            target: {
+                value: name
+            }
+        })} /></span>
 }
 
 type ConfigBarProps = {
