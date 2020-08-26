@@ -47,6 +47,10 @@ class App extends React.Component<{}, AppProps> {
     alert("gespeichert")
   }
 
+  wizard = () => {
+    return { isOpen: true } as any
+  }
+
   logout = () => {
     this.setState((prevState) => { return { loggedOut: !prevState.loggedOut } });
   }
@@ -78,7 +82,7 @@ class App extends React.Component<{}, AppProps> {
     return (
       <div className="App">
         <ApplicationBar loggedOut={this.state.loggedOut} logout={this.logout} />
-        <ActionBar loggedOut={this.state.loggedOut} addEntry={this.addEntry} save={this.save} />
+        <ActionBar loggedOut={this.state.loggedOut} addEntry={this.addEntry} save={this.save} wizard={this.wizard} />
         <ConfigBar configFileChanged={this.configFileChanged} />
         {this.state.loggedOut && <LogoutPage></LogoutPage>}
         <header className="App-header" hidden={this.state.loggedOut}>

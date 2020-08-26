@@ -32,9 +32,18 @@
   background-color: #E4842B;
 }
 
+.fa-lg:hover {
+  color: darkgrey
+}
+
+.fa-lg:active {
+  color: grey
+}
+
 #saveButton,
 #addButton,
 #refreshButton,
+#wizardButton,
 #userIcon {
   margin: 0 15px 0 0;
   float: right;
