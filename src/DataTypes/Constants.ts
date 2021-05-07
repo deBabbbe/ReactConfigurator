@@ -2,7 +2,8 @@ export enum ConfigFiles {
     "web.config",
     "EmailImporter.exe.config",
     "SmoopeImporter.exe.config",
-    "SkypeImporter.exe.config"
+    "SkypeImporter.exe.config",
+    "SmartMessengerImporter.exe.config"
 }
 
 export function ConfigFile(file: ConfigFiles): string {
@@ -16,7 +17,8 @@ export class Constants {
         ConfigFiles[ConfigFiles["web.config"]],
         ConfigFiles[ConfigFiles["EmailImporter.exe.config"]],
         ConfigFiles[ConfigFiles["SmoopeImporter.exe.config"]],
-        ConfigFiles[ConfigFiles["SkypeImporter.exe.config"]]
+        ConfigFiles[ConfigFiles["SkypeImporter.exe.config"]],
+        ConfigFiles[ConfigFiles["SmartMessengerImporter.exe.config"]]
     ]
 
     public static readonly CONFIG_TYPES = {

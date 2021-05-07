@@ -3,6 +3,7 @@ import { ReactComponent as WebConfigIcon } from '../icons/Web.svg'
 import { ReactComponent as EmailIcon } from '../icons/Email.svg'
 import { ReactComponent as SmoopeIcon } from '../icons/Smoope.svg'
 import { ReactComponent as SkypeIcon } from '../icons/Skype.svg'
+import { ReactComponent as SmartMessengerIcon } from '../icons/SmartMessenger.svg'
 import { Constants, ConfigFiles, ConfigFile } from '../DataTypes/Constants';
 
 const getIcon = (name: string): any => {
@@ -15,6 +16,8 @@ const getIcon = (name: string): any => {
             return SmoopeIcon;
         case ConfigFile(ConfigFiles["SkypeImporter.exe.config"]):
             return SkypeIcon;
+        case ConfigFile(ConfigFiles["SmartMessengerImporter.exe.config"]):
+            return SmartMessengerIcon;
     }
 }
 

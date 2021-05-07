@@ -68,6 +68,7 @@ class App extends React.Component<{}, AppProps> {
       data: configs,
       filteredData: configs
     });
+    localStorage.setItem("filterValue", "")
   }
 
   filterConfigs = (filterValue: string) => {
@@ -78,7 +79,7 @@ class App extends React.Component<{}, AppProps> {
     this.setState({ filteredData });
   }
 
-  render = () => {
+  render() {
     return (
       <div className="App">
         <ApplicationBar loggedOut={this.state.loggedOut} logout={this.logout} />
@@ -86,8 +87,8 @@ class App extends React.Component<{}, AppProps> {
         <ConfigBar configFileChanged={this.configFileChanged} />
         {this.state.loggedOut && <LogoutPage></LogoutPage>}
         <header className="App-header" hidden={this.state.loggedOut}>
-          <SearchBar filterConfigs={this.filterConfigs} filterText={this.state.filterText} />
           <ConfigFileSelector configFileChanged={this.configFileChanged}></ConfigFileSelector>
+          <SearchBar filterConfigs={this.filterConfigs} filterText={this.state.filterText} />
           <table>
             <Entries data={this.state.filteredData} removeEntry={this.removeEntry}></Entries>
           </table>
