@@ -1,98 +1,78 @@
 import { ConfigBar } from './Components/ConfigBar';
 import { ActionBar } from './Components/ActionBar';
 import { ApplicationBar } from './Components/ApplicationBar';
-import React from 'react';
+import React, { useState } from 'react';
 import './App.scss';
 import ConfigFileSelector from './Components/ConfigFileSelector'
-import configEntries, { configEntry } from "./DataTypes/ConfigEntries";
+import configEntries from "./DataTypes/ConfigEntries";
 import { Constants } from './DataTypes/Constants';
 import { LogoutPage } from './Components/LogoutPage';
 import { v4 as uuid } from 'uuid';
 import Entries from './Components/Entries';
 import SearchBar from './Components/SearchBar';
 
-type AppProps = {
-  data: configEntry[],
-  filteredData: configEntry[],
-  loggedOut: boolean,
-  filterText: string
-}
+export default function App() {
+  const configs = configEntries.find(c => c.fileName === "web.config")!.configs;
+  const [data, setData] = useState(
+    configs.map(entry => Object.assign(entry, { key: uuid() }))
+  );
+  const [loggedOut, setLoggedOut] = useState(false);
+  const [filteredData, setFilteredData] = useState(configs.map(entry => Object.assign(entry, { key: uuid() })))
+  const [filterText, setFilterText] = useState("");
 
-class App extends React.Component<{}, AppProps> {
-  private loggedOut: boolean = false;
+  const filterConfigs = (filterValue: string) => {
+    setFilteredData(data.filter(d =>
+      d.config.contains(filterValue)
+    ));
+    setFilterText(filterValue);
+  }
 
-  constructor(props: AppProps) {
-    super(props);
-    const configs = configEntries.find(c => c.fileName === "web.config")!.configs
-    this.state = {
-      data: configs.map(entry => Object.assign(entry, { key: uuid() })),
-      filteredData: configs.map(entry => Object.assign(entry, { key: uuid() })),
-      loggedOut: false,
-      filterText: ""
+  const addEntry = () => {
+    const entryToInsert = { config: "", type: Constants.CONFIG_TYPES.STRING, key: uuid() }
+    if (data) {
+      setData([...data, entryToInsert])
     }
   }
 
-  componentDidMount = () => {
-    this.filterConfigs("")
-  }
-
-  addEntry = () => {
-    const entryToInsert = { config: "", type: Constants.CONFIG_TYPES.STRING, key: uuid() }
-    this.setState({ data: [...this.state.data, entryToInsert] })
-  }
-
-  save = () => {
+  const save = () => {
     alert("gespeichert")
   }
 
-  wizard = () => {
+  const wizard = () => {
     return { isOpen: true } as any
   }
 
-  logout = () => {
-    this.setState((prevState) => { return { loggedOut: !prevState.loggedOut } });
+  const logout = () => {
+    setLoggedOut(!loggedOut);
   }
 
-  removeEntry = (key: string) => {
-    const newState = this.state.filteredData.filter((d) => { return d.key !== key });
-    this.setState({ filteredData: newState })
+  const removeEntry = (key: string) => {
+    const newState = filteredData.filter((d) => { return d.key !== key });
+    setFilteredData(newState)
   }
 
-  configFileChanged = (event: { target: { value: string } }): void => {
+  const configFileChanged = (event: { target: { value: string } }): void => {
     const configs = configEntries.find(c => c.fileName === event.target.value)!.configs
     configs.forEach(entry => Object.assign(entry, { key: uuid() }))
 
-    this.setState({
-      data: configs,
-      filteredData: configs,
-      filterText: ""
-    });
+    setData(configs);
+    setFilteredData(configs);
+    setFilterText("")
   }
 
-  filterConfigs = (filterValue: string) => {
-    const filteredData = this.state.data.filter(data =>
-      data.config.contains(filterValue)
-    );
-    this.setState({ filteredData, filterText: filterValue });
-  }
-
-  render() {
-    return (
-      <div className="App">
-        <ApplicationBar loggedOut={this.state.loggedOut} logout={this.logout} />
-        <ActionBar loggedOut={this.state.loggedOut} addEntry={this.addEntry} save={this.save} wizard={this.wizard} />
-        <ConfigBar configFileChanged={this.configFileChanged} />
-        {this.state.loggedOut && <LogoutPage></LogoutPage>}
-        <header className="App-header" hidden={this.state.loggedOut}>
-          <ConfigFileSelector configFileChanged={this.configFileChanged}></ConfigFileSelector>
-          <SearchBar filterConfigs={this.filterConfigs} filterText={this.state.filterText} />
-          <table>
-            <Entries data={this.state.filteredData} removeEntry={this.removeEntry}></Entries>
-          </table>
-        </header>
-      </div>
-    );
-  }
+  return (
+    <div className="App">
+      <ApplicationBar loggedOut={loggedOut} logout={logout} />
+      <ActionBar loggedOut={loggedOut} addEntry={addEntry} save={save} wizard={wizard} />
+      <ConfigBar configFileChanged={configFileChanged} />
+      {loggedOut && <LogoutPage></LogoutPage>}
+      <header className="App-header" hidden={loggedOut}>
+        <ConfigFileSelector configFileChanged={configFileChanged}></ConfigFileSelector>
+        <SearchBar filterConfigs={filterConfigs} filterText={filterText} />
+        <table>
+          <Entries data={filteredData} removeEntry={removeEntry}></Entries>
+        </table>
+      </header>
+    </div>
+  );
 }
-
-export default App
