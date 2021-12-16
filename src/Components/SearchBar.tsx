@@ -5,15 +5,12 @@ type SearchBarProps = {
     filterText: string;
 }
 
-export class SearchBar extends React.Component<SearchBarProps> {
-    changeFilter = (event: React.ChangeEvent<HTMLInputElement>) => {
+export default function SearchBar(props: SearchBarProps) {
+    const changeFilter = (event: React.ChangeEvent<HTMLInputElement>) => {
         event.persist()
-        this.props.filterConfigs(event.target.value)
+        props.filterConfigs(event.target.value)
     }
-
-    render() {
-        return <div id="searchBar">
-            <input value={this.props.filterText} onChange={this.changeFilter}></input>
-        </div>;
-    }
+    return <div id="searchBar">
+        <input value={props.filterText} onChange={changeFilter}></input>
+    </div>;
 }

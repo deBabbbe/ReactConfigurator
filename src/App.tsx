@@ -1,15 +1,15 @@
-import { SearchBar } from './Components/SearchBar';
 import { ConfigBar } from './Components/ConfigBar';
 import { ActionBar } from './Components/ActionBar';
 import { ApplicationBar } from './Components/ApplicationBar';
 import React from 'react';
 import './App.scss';
-import Entries from './Components/Entries';
 import ConfigFileSelector from './Components/ConfigFileSelector'
 import configEntries, { configEntry } from "./DataTypes/ConfigEntries";
 import { Constants } from './DataTypes/Constants';
 import { LogoutPage } from './Components/LogoutPage';
 import { v4 as uuid } from 'uuid';
+import Entries from './Components/Entries';
+import SearchBar from './Components/SearchBar';
 
 type AppProps = {
   data: configEntry[],
