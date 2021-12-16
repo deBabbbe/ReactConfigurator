@@ -28,10 +28,10 @@ export default function App() {
   }
 
   const addEntry = () => {
-    const entryToInsert = { config: "Please fill value", type: Constants.CONFIG_TYPES.STRING, key: uuid() }
+    const entryToInsert = { config: filterText, type: Constants.CONFIG_TYPES.STRING, key: uuid() }
     setData([...data, entryToInsert])
     setFilterText("")
-    setFilteredData(data)
+    setFilteredData([...data, entryToInsert])
   }
 
   const removeEntry = (key: string) => {
@@ -60,6 +60,7 @@ export default function App() {
     setFilterText("")
   }
 
+
   return (
     <div className="App">
       <ApplicationBar loggedOut={loggedOut} logout={logout} />
@@ -68,7 +69,7 @@ export default function App() {
       {loggedOut && <LogoutPage></LogoutPage>}
       <header className="App-header" hidden={loggedOut}>
         <ConfigFileSelector configFileChanged={configFileChanged}></ConfigFileSelector>
-        <SearchBar filterConfigs={filterConfigs} filterText={filterText} />
+        <SearchBar filterConfigs={filterConfigs} filterText={filterText} addEntry={addEntry} />
         <table>
           <Entries data={filteredData} removeEntry={removeEntry}></Entries>
         </table>

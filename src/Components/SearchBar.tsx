@@ -3,6 +3,7 @@ import React from 'react';
 type SearchBarProps = {
     filterConfigs: (filter: string) => void;
     filterText: string;
+    addEntry: () => void;
 }
 
 export default function SearchBar(props: SearchBarProps) {
@@ -10,7 +11,14 @@ export default function SearchBar(props: SearchBarProps) {
         event.persist()
         props.filterConfigs(event.target.value)
     }
+    const handleKeyDown = (event: React.KeyboardEvent) => {
+        event.persist()
+        if (event.key === "Enter") {
+            props.addEntry();
+        }
+    }
+
     return <div id="searchBar">
-        <input value={props.filterText} onChange={changeFilter}></input>
+        <input value={props.filterText} onChange={changeFilter} onKeyDown={handleKeyDown}></input>
     </div>;
 }
