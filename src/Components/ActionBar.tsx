@@ -6,7 +6,6 @@ type ActionBarProps = {
     save: () => void;
     addEntry: () => void;
     loggedOut: boolean;
-    wizard: () => void;
 }
 
 export function ActionBar(props: ActionBarProps) {
@@ -20,9 +19,6 @@ export function ActionBar(props: ActionBarProps) {
         </span>
         <span id="addButton" onClick={props.addEntry} hidden={props.loggedOut}>
             <FontAwesomeIcon icon={faPlusSquare} size="lg" title="Hinzufügen" />
-        </span>
-        <span id="wizardButton" onClick={props.wizard} hidden={props.loggedOut}>
-            <FontAwesomeIcon icon={faMagic} size="lg" title="Wizard" />
         </span>
     </div>;
 }

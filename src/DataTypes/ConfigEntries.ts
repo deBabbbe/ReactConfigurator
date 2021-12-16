@@ -18,7 +18,7 @@ const configEntries: fileConfigEntry[] = [
             { key: "", config: "Common.Imap.Username", type: Constants.CONFIG_TYPES.STRING },
             { key: "", config: "Common.Imap.Password", type: Constants.CONFIG_TYPES.STRING },
             { key: "", config: "Common.Imap.UseSsl", type: Constants.CONFIG_TYPES.BOOL },
-            { key: "", config: "Common.Send.Timeout", type: Constants.CONFIG_TYPES.DATETIME },
+            { key: "", config: "Common.Send.Timeout", type: Constants.CONFIG_TYPES.DATETIME,  },
             { key: "", config: "Common.Imap.Glubsch", type: Constants.CONFIG_TYPES.STRING }
         ]
     },

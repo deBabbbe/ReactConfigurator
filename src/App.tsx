@@ -43,10 +43,6 @@ export default function App() {
     alert("gespeichert")
   }
 
-  const wizard = () => {
-    return { isOpen: true } as any
-  }
-
   const logout = () => {
     setLoggedOut(!loggedOut);
   }
@@ -64,7 +60,7 @@ export default function App() {
   return (
     <div className="App">
       <ApplicationBar loggedOut={loggedOut} logout={logout} />
-      <ActionBar loggedOut={loggedOut} addEntry={addEntry} save={save} wizard={wizard} />
+      <ActionBar loggedOut={loggedOut} addEntry={addEntry} save={save} />
       <ConfigBar configFileChanged={configFileChanged} />
       {loggedOut && <LogoutPage></LogoutPage>}
       <header className="App-header" hidden={loggedOut}>
