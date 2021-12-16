@@ -33,9 +33,7 @@ class App extends React.Component<{}, AppProps> {
   }
 
   componentDidMount = () => {
-    const prevFilter = localStorage.getItem("filterValue")?.toString() || "";
-    this.setState(() => { return { filterText: prevFilter } });
-    this.filterConfigs(prevFilter ? prevFilter : "")
+    this.filterConfigs("")
   }
 
   addEntry = () => {
@@ -66,17 +64,16 @@ class App extends React.Component<{}, AppProps> {
 
     this.setState({
       data: configs,
-      filteredData: configs
+      filteredData: configs,
+      filterText: ""
     });
-    localStorage.setItem("filterValue", "")
   }
 
   filterConfigs = (filterValue: string) => {
-    localStorage.setItem("filterValue", filterValue ? filterValue : "")
     const filteredData = this.state.data.filter(data =>
       data.config.contains(filterValue)
     );
-    this.setState({ filteredData });
+    this.setState({ filteredData, filterText: filterValue });
   }
 
   render() {

@@ -13,7 +13,7 @@ export class SearchBar extends React.Component<SearchBarProps> {
 
     render() {
         return <div id="searchBar">
-            <input onChange={this.changeFilter} defaultValue={this.props.filterText}></input>
+            <input value={this.props.filterText} onChange={this.changeFilter}></input>
         </div>;
     }
 }
