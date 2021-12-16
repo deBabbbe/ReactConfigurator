@@ -5,6 +5,7 @@ import { ReactComponent as SmoopeIcon } from '../icons/Smoope.svg'
 import { ReactComponent as SkypeIcon } from '../icons/Skype.svg'
 import { ReactComponent as SmartMessengerIcon } from '../icons/SmartMessenger.svg'
 import { Constants, ConfigFiles, ConfigFile } from '../DataTypes/Constants';
+import { v4 as uuid } from 'uuid';
 
 const getIcon = (name: string): any => {
     switch (name) {
@@ -23,7 +24,7 @@ const getIcon = (name: string): any => {
 
 function getIconForName(name: string, configFileChanged: (event: { target: { value: string } }) => void) {
     const Icon = getIcon(name);
-    return <span title={name}><Icon className="configBarIcon" width="40px" height="40px"
+    return <span title={name} key={uuid()}><Icon className="configBarIcon" width="40px" height="40px"
         onClick={() => configFileChanged({
             target: {
                 value: name

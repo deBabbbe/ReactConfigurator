@@ -28,10 +28,15 @@ export default function App() {
   }
 
   const addEntry = () => {
-    const entryToInsert = { config: "", type: Constants.CONFIG_TYPES.STRING, key: uuid() }
-    if (data) {
-      setData([...data, entryToInsert])
-    }
+    const entryToInsert = { config: "Please fill value", type: Constants.CONFIG_TYPES.STRING, key: uuid() }
+    setData([...data, entryToInsert])
+    setFilterText("")
+    setFilteredData(data)
+  }
+
+  const removeEntry = (key: string) => {
+    const newState = filteredData.filter((d) => { return d.key !== key });
+    setFilteredData(newState)
   }
 
   const save = () => {
@@ -44,11 +49,6 @@ export default function App() {
 
   const logout = () => {
     setLoggedOut(!loggedOut);
-  }
-
-  const removeEntry = (key: string) => {
-    const newState = filteredData.filter((d) => { return d.key !== key });
-    setFilteredData(newState)
   }
 
   const configFileChanged = (event: { target: { value: string } }): void => {
