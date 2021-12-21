@@ -11,9 +11,10 @@ export default function SearchBar(props: SearchBarProps) {
         event.persist()
         props.filterConfigs(event.target.value)
     }
+
     const handleKeyDown = (event: React.KeyboardEvent) => {
         event.persist()
-        if (event.key === "Enter") {
+        if (event.key === "Enter" && props.filterText !== "") {
             props.addEntry();
         }
     }

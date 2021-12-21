@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faRedoAlt, faSave, faPlusSquare, faMagic } from '@fortawesome/free-solid-svg-icons';
+import { faRedoAlt, faSave, faPlusSquare } from '@fortawesome/free-solid-svg-icons';
 
 type ActionBarProps = {
     save: () => void;
