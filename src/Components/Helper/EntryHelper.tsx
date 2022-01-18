@@ -14,19 +14,19 @@ type EntryContentResult = {
     icon: JSX.Element;
 }
 
-export default function getContentDependingOnType(type: string): EntryContentResult {
+export default function getContentDependingOnType(type: string, value: string): EntryContentResult {
     let tag;
     let icon;
     if (type === Constants.CONFIG_TYPES.BOOL) {
-        tag = <BoolSelector></BoolSelector>
+        tag = <BoolSelector value={value}></BoolSelector>
         icon = <FontAwesomeIcon icon={faQuestion} />
     }
     else if (type === Constants.CONFIG_TYPES.DATETIME) {
-        tag = <input type="datetime-local" defaultValue={getDate()}></input>
+        tag = <input type="datetime-local" defaultValue={getDate()} value={value}></input>
         icon = <FontAwesomeIcon icon={faClock} />
     }
     else {
-        tag = <input placeholder="Please fill value"></input>
+        tag = <input placeholder="Please fill value" value={value}></input>
         icon = <FontAwesomeIcon icon={faFileWord} />
     }
     return { tag, icon };

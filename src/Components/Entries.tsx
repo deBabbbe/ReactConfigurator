@@ -10,7 +10,7 @@ type EntriesProps = {
 export default function Entries(props: EntriesProps) {
     return <> {
         props.data.map(entry => {
-            return <Entry key={entry.key} id={entry.key} config={entry.config} type={entry.type} removeEntry={props.removeEntry}></Entry>
+            return <Entry key={entry.key} id={entry.key} value={entry.value} config={entry.config} type={entry.type} removeEntry={props.removeEntry}></Entry>
         })
     }</>;
 }

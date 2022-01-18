@@ -8,10 +8,11 @@ type EntryProps = {
     removeEntry: (key: string) => void;
     id: string;
     config: string;
+    value: string;
 }
 
 export default function Entry(props: EntryProps) {
-    const { tag, icon } = getContentDependingOnType(props.type)
+    const { tag, icon } = getContentDependingOnType(props.type, props.value);
 
     const removeEntry = () => {
         props.removeEntry(props.id)
@@ -23,7 +24,11 @@ export default function Entry(props: EntryProps) {
                 <td><input defaultValue={props.config} /></td>
                 <td title={props.type}>{icon}</td>
                 <td className="entryTag">{tag}</td>
-                <td><span id="removeButton" onClick={removeEntry}><FontAwesomeIcon icon={faBan} title="Löschen" /></span></td>
+                <td>
+                    <span id="removeButton" onClick={removeEntry}>
+                        <FontAwesomeIcon icon={faBan} title="Löschen" />
+                    </span>
+                </td>
             </tr>
         </tbody >
     );

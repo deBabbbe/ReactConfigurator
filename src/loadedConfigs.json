@@ -4,19 +4,23 @@
         "configs": [
             {
                 "config": "Common.Imap.Username",
-                "type": "string"
+                "type": "string",
+                "value": "Schorsch"
             },
             {
                 "config": "Common.Imap.Password",
-                "type": "string"
+                "type": "string",
+                "value": "*****"
             },
             {
                 "config": "Common.Imap.UseSsl",
-                "type": "bool"
+                "type": "bool",
+                "value": true
             },
             {
                 "config": "Common.Send.Timeout",
-                "type": "DateTime"
+                "type": "DateTime",
+                "value": "2022-01-18T23:35:27"
             },
             {
                 "config": "Common.Imap.Glubsch",
@@ -37,7 +41,12 @@
             },
             {
                 "config": "EmailImporter.Imap.UseSsl",
-                "type": "bool"
+                "type": "bool",
+                "value": false
+            },
+            {
+                "config": "EmailImporter.Importer.ImportTime",
+                "type": "DateTime"
             }
         ]
     },

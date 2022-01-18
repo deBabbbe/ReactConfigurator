@@ -32,7 +32,7 @@ export default function Configurator(props: ConfiguratorProps) {
     }
 
     const addEntry = () => {
-        const entryToInsert = { config: filterText, type: Constants.CONFIG_TYPES.STRING, key: uuid() }
+        const entryToInsert = { config: filterText, type: Constants.CONFIG_TYPES.STRING, key: uuid(), value: "" }
         setData([...data, entryToInsert])
         setFilterText("")
         setFilteredData([...data, entryToInsert])
