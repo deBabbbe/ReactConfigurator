@@ -10,7 +10,6 @@ import { LogoutPage } from './LogoutPage';
 import ConfigFileSelector from './ConfigFileSelector';
 import SearchBar from './SearchBar';
 import Entries from './Entries';
-
 type ConfiguratorProps = {
     loadedConfigs: fileConfigEntry[];
 }
@@ -70,7 +69,7 @@ export default function Configurator(props: ConfiguratorProps) {
             <ConfigBar configFiles={props.loadedConfigs.map(c => c.fileName)} configFileChanged={configFileChanged} />
             {loggedOut && <LogoutPage></LogoutPage>}
             <header className="App-header" hidden={loggedOut}>
-                <ConfigFileSelector configFiles={props.loadedConfigs.map(c => c.fileName)} configFileChanged={configFileChanged}></ConfigFileSelector>
+                <ConfigFileSelector configFiles={props.loadedConfigs.map(c => c.fileName)} configFileName={configFileName} configFileChanged={configFileChanged}></ConfigFileSelector>
                 <SearchBar filterConfigs={filterConfigs} filterText={filterText} addEntry={addEntry} />
                 <table>
                     <Entries data={filteredData} removeEntry={removeEntry}></Entries>
