@@ -16,7 +16,8 @@ type ConfiguratorProps = {
 }
 
 export default function Configurator(props: ConfiguratorProps) {
-    const configs = props.loadedConfigs.find(c => c.fileName === "web.config")!.configs;
+    const [configFileName, setConfigFileName] = useState(props.loadedConfigs[0].fileName);
+    const configs = props.loadedConfigs[0].configs;
     const [data, setData] = useState(
         configs.map(entry => Object.assign(entry, { key: uuid() }))
     );
@@ -36,6 +37,7 @@ export default function Configurator(props: ConfiguratorProps) {
         setData([...data, entryToInsert])
         setFilterText("")
         setFilteredData([...data, entryToInsert])
+        props.loadedConfigs.find(c => c.fileName === configFileName)!.configs.push(entryToInsert);
     }
 
     const removeEntry = (key: string) => {
@@ -52,6 +54,7 @@ export default function Configurator(props: ConfiguratorProps) {
     }
 
     const configFileChanged = (event: { target: { value: string } }): void => {
+        setConfigFileName(event.target.value)
         const configs = props.loadedConfigs.find(c => c.fileName === event.target.value)!.configs
         configs.forEach(entry => Object.assign(entry, { key: uuid() }))
 
@@ -59,7 +62,6 @@ export default function Configurator(props: ConfiguratorProps) {
         setFilteredData(configs);
         setFilterText("")
     }
-
 
     return (
         <div className="App">

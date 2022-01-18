@@ -13,7 +13,7 @@ export default function App() {
   }, [])
 
   if (isInitialized) {
-    return <Configurator loadedConfigs={loadedConfigs}></Configurator>
+    return <Configurator loadedConfigs={loadedConfigs} ></Configurator>
   }
   return <></>
 }

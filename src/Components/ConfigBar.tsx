@@ -1,5 +1,6 @@
 import React from 'react'
 import { ReactComponent as WebConfigIcon } from '../icons/Web.svg'
+import { ReactComponent as WhatsAppIcon } from '../icons/WhatsApp.svg'
 import { ReactComponent as EmailIcon } from '../icons/Email.svg'
 import { ReactComponent as SmoopeIcon } from '../icons/Smoope.svg'
 import { ReactComponent as SkypeIcon } from '../icons/Skype.svg'
@@ -12,7 +13,7 @@ const getIcon = (name: string): any => {
     else if (name.contains("Smoope")) return SmoopeIcon;
     else if (name.contains("Skype")) return SkypeIcon;
     else if (name.contains("SmartMessenger")) return SmartMessengerIcon;
-    else return SmartMessengerIcon;
+    else return WhatsAppIcon;
 }
 
 function getIconForName(name: string, configFileChanged: (event: { target: { value: string } }) => void) {
