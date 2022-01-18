@@ -4,22 +4,15 @@ import { ReactComponent as EmailIcon } from '../icons/Email.svg'
 import { ReactComponent as SmoopeIcon } from '../icons/Smoope.svg'
 import { ReactComponent as SkypeIcon } from '../icons/Skype.svg'
 import { ReactComponent as SmartMessengerIcon } from '../icons/SmartMessenger.svg'
-import { Constants, ConfigFiles, ConfigFile } from '../DataTypes/Constants';
 import { v4 as uuid } from 'uuid';
 
 const getIcon = (name: string): any => {
-    switch (name) {
-        case ConfigFile(ConfigFiles["web.config"]):
-            return WebConfigIcon;
-        case ConfigFile(ConfigFiles["EmailImporter.exe.config"]):
-            return EmailIcon;
-        case ConfigFile(ConfigFiles["SmoopeImporter.exe.config"]):
-            return SmoopeIcon;
-        case ConfigFile(ConfigFiles["SkypeImporter.exe.config"]):
-            return SkypeIcon;
-        case ConfigFile(ConfigFiles["SmartMessengerImporter.exe.config"]):
-            return SmartMessengerIcon;
-    }
+    if (name.contains("web")) return WebConfigIcon;
+    else if (name.contains("Email")) return EmailIcon;
+    else if (name.contains("Smoope")) return SmoopeIcon;
+    else if (name.contains("Skype")) return SkypeIcon;
+    else if (name.contains("SmartMessenger")) return SmartMessengerIcon;
+    else return SmartMessengerIcon;
 }
 
 function getIconForName(name: string, configFileChanged: (event: { target: { value: string } }) => void) {
@@ -33,13 +26,14 @@ function getIconForName(name: string, configFileChanged: (event: { target: { val
 }
 
 type ConfigBarProps = {
+    configFiles: string[];
     configFileChanged: (event: { target: { value: string } }) => void;
 }
 
 export function ConfigBar(props: ConfigBarProps) {
     return <div className="ConfigBar">
         <div>
-            {Constants.CONFIG_FILES.map(config => {
+            {props.configFiles.map(config => {
                 return getIconForName(config, props.configFileChanged)
             })}
         </div>

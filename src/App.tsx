@@ -4,15 +4,16 @@ import { ApplicationBar } from './Components/ApplicationBar';
 import React, { useState } from 'react';
 import './App.scss';
 import ConfigFileSelector from './Components/ConfigFileSelector'
-import configEntries from "./DataTypes/ConfigEntries";
 import { Constants } from './DataTypes/Constants';
 import { LogoutPage } from './Components/LogoutPage';
 import { v4 as uuid } from 'uuid';
 import Entries from './Components/Entries';
 import SearchBar from './Components/SearchBar';
+import { fileConfigEntry } from './DataTypes/ConfigEntries';
+const loadedConfigs: fileConfigEntry[] = require("./loadedConfigs.json");
 
 export default function App() {
-  const configs = configEntries.find(c => c.fileName === "web.config")!.configs;
+  const configs = loadedConfigs.find(c => c.fileName === "web.config")!.configs;
   const [data, setData] = useState(
     configs.map(entry => Object.assign(entry, { key: uuid() }))
   );
@@ -48,7 +49,7 @@ export default function App() {
   }
 
   const configFileChanged = (event: { target: { value: string } }): void => {
-    const configs = configEntries.find(c => c.fileName === event.target.value)!.configs
+    const configs = loadedConfigs.find(c => c.fileName === event.target.value)!.configs
     configs.forEach(entry => Object.assign(entry, { key: uuid() }))
 
     setData(configs);
@@ -61,10 +62,10 @@ export default function App() {
     <div className="App">
       <ApplicationBar loggedOut={loggedOut} logout={logout} />
       <ActionBar loggedOut={loggedOut} addEntry={addEntry} save={save} />
-      <ConfigBar configFileChanged={configFileChanged} />
+      <ConfigBar configFiles={loadedConfigs.map(c => c.fileName)} configFileChanged={configFileChanged} />
       {loggedOut && <LogoutPage></LogoutPage>}
       <header className="App-header" hidden={loggedOut}>
-        <ConfigFileSelector configFileChanged={configFileChanged}></ConfigFileSelector>
+        <ConfigFileSelector configFiles={loadedConfigs.map(c => c.fileName)} configFileChanged={configFileChanged}></ConfigFileSelector>
         <SearchBar filterConfigs={filterConfigs} filterText={filterText} addEntry={addEntry} />
         <table>
           <Entries data={filteredData} removeEntry={removeEntry}></Entries>

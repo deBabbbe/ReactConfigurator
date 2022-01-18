@@ -1,14 +1,13 @@
 import React from 'react';
 
 type ConfigFileSelectorProps = {
+    configFiles: string[];
     configFileChanged: (event: { target: { value: string } }) => void;
 }
 
 export default function ConfigFileSelector(props: ConfigFileSelectorProps) {
+    const options = props.configFiles.map(file => <option>{file}</option>)
     return (<select id="configFile" onChange={props.configFileChanged}>
-        <option>web.config</option>
-        <option>EmailImporter.exe.config</option>
-        <option>SmoopeImporter.exe.config</option>
-        <option>SkypeImporter.exe.config</option>
+        {options}
     </select>);
 }
