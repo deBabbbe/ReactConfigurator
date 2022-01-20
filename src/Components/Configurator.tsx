@@ -15,6 +15,7 @@ type ConfiguratorProps = {
 }
 
 export default function Configurator(props: ConfiguratorProps) {
+    const [typeHidden, setTypeHidden] = useState(false);
     const [configFileName, setConfigFileName] = useState(props.loadedConfigs[0].fileName);
     const configs = props.loadedConfigs[0].configs;
     const [data, setData] = useState(
@@ -65,14 +66,14 @@ export default function Configurator(props: ConfiguratorProps) {
     return (
         <div className="App">
             <ApplicationBar loggedOut={loggedOut} logout={logout} />
-            <ActionBar loggedOut={loggedOut} addEntry={addEntry} save={save} />
+            <ActionBar loggedOut={loggedOut} addEntry={addEntry} save={save} typeHidden={typeHidden} setTypeHidden={setTypeHidden} />
             <ConfigBar configFiles={props.loadedConfigs.map(c => c.fileName)} configFileChanged={configFileChanged} />
             {loggedOut && <LogoutPage></LogoutPage>}
             <header className="App-header" hidden={loggedOut}>
                 <ConfigFileSelector configFiles={props.loadedConfigs.map(c => c.fileName)} configFileName={configFileName} configFileChanged={configFileChanged}></ConfigFileSelector>
                 <SearchBar filterConfigs={filterConfigs} filterText={filterText} addEntry={addEntry} />
                 <table>
-                    <Entries data={filteredData} removeEntry={removeEntry}></Entries>
+                    <Entries data={filteredData} removeEntry={removeEntry} typeHidden={typeHidden}></Entries>
                 </table>
             </header>
         </div>

@@ -44,10 +44,15 @@
 #addButton,
 #refreshButton,
 #wizardButton,
-#userIcon {
+#userIcon,
+#hideButton {
   margin: 0 15px 0 0;
   float: right;
   color: white;
+}
+
+#hideButton .hidden{
+  color: grey;
 }
 
 #userName {
