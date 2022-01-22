@@ -73,7 +73,7 @@ export default function Configurator(props: ConfiguratorProps) {
                 <ConfigFileSelector configFiles={props.loadedConfigs.map(c => c.fileName)} configFileName={configFileName} configFileChanged={configFileChanged}></ConfigFileSelector>
                 <SearchBar filterConfigs={filterConfigs} filterText={filterText} addEntry={addEntry} />
                 <table>
-                    <Entries data={filteredData} removeEntry={removeEntry} typeHidden={typeHidden}></Entries>
+                    <Entries data={filteredData} setData={setFilteredData} removeEntry={removeEntry} typeHidden={typeHidden}></Entries>
                 </table>
             </header>
         </div>

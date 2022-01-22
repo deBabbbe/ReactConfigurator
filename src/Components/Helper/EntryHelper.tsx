@@ -14,7 +14,25 @@ type EntryContentResult = {
     icon: JSX.Element;
 }
 
-export default function getContentDependingOnType(type: string, value: string, typeHidden: boolean): EntryContentResult {
+interface ConfigTypeSelectorProps {
+    onSelect: (value: string) => void;
+    type: string;
+}
+
+export function ConfigTypeSelector(props: ConfigTypeSelectorProps) {
+    const types = [
+        "",
+        Constants.CONFIG_TYPES.BOOL,
+        Constants.CONFIG_TYPES.DATETIME,
+        Constants.CONFIG_TYPES.STRING,
+    ]
+    const options = types.map(file => <option>{file}</option>)
+    return (<select id="configType" onChange={(event) => props.onSelect(event.target.value)}>
+        {options}
+    </select>);
+}
+
+export function getContentDependingOnType(type: string, value: string, typeHidden: boolean): EntryContentResult {
     let tag;
     let icon;
     if (type === Constants.CONFIG_TYPES.BOOL && !typeHidden) {
