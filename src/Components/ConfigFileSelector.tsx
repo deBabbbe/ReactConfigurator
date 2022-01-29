@@ -5,11 +5,16 @@ type ConfigFileSelectorProps = {
     configFiles: string[];
     configFileName: string;
     configFileChanged: (value: string) => void;
+    filesWithPleaseFillValue: string[];
 };
 
 export default function ConfigFileSelector(props: ConfigFileSelectorProps) {
     const options = props.configFiles.map((file) => {
-        return { value: file, label: file };
+        let label = file;
+        if (!!props.filesWithPleaseFillValue.find(f => f === file)) {
+            label += "!"
+        }
+        return { value: file, label };
     });
 
     return (
