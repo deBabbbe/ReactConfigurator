@@ -12,15 +12,6 @@ export default function ConfigFileSelector(props: ConfigFileSelectorProps) {
         return { value: file, label: file };
     });
 
-    const customStyles = {
-        option: (provided: any, state: { isSelected: any; }) => ({
-            ...provided,
-            borderBottom: '2px dotted green',
-            color: state.isSelected ? 'yellow' : 'black',
-            backgroundColor: state.isSelected ? 'green' : 'grey',
-
-        })
-    }
     return (
         <Select
             id="configFile"
