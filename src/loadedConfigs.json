@@ -13,6 +13,11 @@
                 "value": "*****"
             },
             {
+                "config": "Common.Imap.Url",
+                "type": "string",
+                "value": "[PLEASE FILL VALUE]"
+            },
+            {
                 "config": "Common.Imap.UseSsl",
                 "type": "bool",
                 "value": true

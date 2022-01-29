@@ -53,9 +53,9 @@ export default function Configurator(props: ConfiguratorProps) {
         setLoggedOut(!loggedOut);
     }
 
-    const configFileChanged = (event: { target: { value: string } }): void => {
-        setConfigFileName(event.target.value)
-        const configs = props.loadedConfigs.find(c => c.fileName === event.target.value)!.configs
+    const configFileChanged = (value: string): void => {
+        setConfigFileName(value)
+        const configs = props.loadedConfigs.find(c => c.fileName === value)!.configs
         configs.forEach(entry => Object.assign(entry, { key: uuid() }))
 
         setData(configs);

@@ -16,19 +16,15 @@ const getIcon = (name: string): any => {
     else return WhatsAppIcon;
 }
 
-function getIconForName(name: string, configFileChanged: (event: { target: { value: string } }) => void) {
+function getIconForName(name: string, configFileChanged: (value: string) => void) {
     const Icon = getIcon(name);
     return <span title={name} key={uuid()}><Icon className="configBarIcon" width="40px" height="40px"
-        onClick={() => configFileChanged({
-            target: {
-                value: name
-            }
-        })} /></span>
+        onClick={() => configFileChanged(name)} /></span>
 }
 
 type ConfigBarProps = {
     configFiles: string[];
-    configFileChanged: (event: { target: { value: string } }) => void;
+    configFileChanged: (value: string) => void;
 }
 
 export function ConfigBar(props: ConfigBarProps) {
