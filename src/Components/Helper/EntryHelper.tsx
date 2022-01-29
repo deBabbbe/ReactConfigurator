@@ -1,9 +1,9 @@
 import React from 'react';
-import moment from '../../../node_modules/moment';
 import BoolSelector from './BoolSelector';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFileWord, faQuestion, faClock } from '@fortawesome/free-solid-svg-icons';
 import { Constants } from '../../DataTypes/Constants';
+import moment from 'moment';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 function getDate() {
     return moment().format('YYYY-MM-DDTHH:mm:ss');

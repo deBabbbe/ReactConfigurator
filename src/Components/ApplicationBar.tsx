@@ -1,14 +1,8 @@
 import React from 'react';
-import { FontAwesomeIcon } from '../../node_modules/@fortawesome/react-fontawesome'
-import {
-    faUser,
-    faQuestionCircle,
-    faExclamationTriangle,
-    faInfoCircle,
-    faPowerOff
-} from '../../node_modules/@fortawesome/free-solid-svg-icons'
 import { ReactComponent as Logo } from '../icons/Logo.svg'
 import packageJson from '../../package.json'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faExclamationTriangle, faInfoCircle, faPowerOff, faQuestionCircle, faUser } from '@fortawesome/free-solid-svg-icons';
 
 type ApplicationBarProps = {
     logout: () => void;
