@@ -20,7 +20,7 @@
             {
                 "config": "Common.Imap.UseSsl",
                 "type": "bool",
-                "value": true
+                "value": "true"
             },
             {
                 "config": "Common.Send.Timeout",
@@ -47,7 +47,12 @@
             {
                 "config": "EmailImporter.Imap.UseSsl",
                 "type": "bool",
-                "value": false
+                "value": "false"
+            },
+            {
+                "config": "EmailImporter.Imap.Url",
+                "type": "string",
+                "value": "[PLEASE FILL VALUE]"
             },
             {
                 "config": "EmailImporter.Importer.ImportTime",
