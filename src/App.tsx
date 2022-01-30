@@ -1,14 +1,14 @@
-import { fileConfigEntry } from './DataTypes/ConfigEntries'
+import { FileConfigEntry } from './DataTypes/ConfigEntries'
 import Configurator from './Components/Configurator'
 import React, { useEffect, useState } from 'react'
 import './App.scss'
 
-let loadedConfigs: fileConfigEntry[] = []
+let loadedConfigs: FileConfigEntry[] = []
 
 export default function App() {
   const [isInitialized, setIsInitialized] = useState(false)
   useEffect(() => {
-    loadedConfigs = require('./loadedConfigs.json') as fileConfigEntry[]
+    loadedConfigs = require('./loadedConfigs.json') as FileConfigEntry[]
     if (loadedConfigs) setIsInitialized(true)
   }, [])
 

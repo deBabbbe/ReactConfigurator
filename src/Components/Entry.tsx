@@ -2,20 +2,19 @@ import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBan } from '@fortawesome/free-solid-svg-icons'
 import { ConfigTypeSelector, getContentDependingOnType } from './Helper/EntryHelper'
+import { ConfigEntry } from '../DataTypes/ConfigEntries';
 
 type EntryProps = {
-    type: string;
     setType: (type: string) => void;
+    setValue: (value: string) => void;
     removeEntry: (key: string) => void;
-    id: string;
-    config: string;
-    value: string;
+    entry: ConfigEntry;
     typeHidden: boolean;
 }
 
 export default function Entry(props: EntryProps) {
     const [selectTypeOpen, setSelectTypeOpen] = useState(false);
-    const { tag, icon } = getContentDependingOnType(props.type, props.value, props.typeHidden);
+    const { tag, icon } = getContentDependingOnType(props.entry, props.typeHidden, props.setValue);
     const toggleSelectTypeOpen = () => setSelectTypeOpen(!selectTypeOpen);
     const configTypeChanged = (value: string) => {
         toggleSelectTypeOpen();
@@ -23,17 +22,17 @@ export default function Entry(props: EntryProps) {
 
     };
     const removeEntry = () => {
-        props.removeEntry(props.id)
+        props.removeEntry(props.entry.key)
     }
 
     return (
         <tbody>
             <tr>
-                <td><input defaultValue={props.config} /></td>
+                <td><input defaultValue={props.entry.config} /></td>
                 {!props.typeHidden ? <>
                     {selectTypeOpen ?
-                        <ConfigTypeSelector type={props.type} onSelect={configTypeChanged} /> :
-                        <td title={props.type} onClick={toggleSelectTypeOpen} >{icon}</td>
+                        <ConfigTypeSelector type={props.entry.type} onSelect={configTypeChanged} /> :
+                        <td title={props.entry.type} onClick={toggleSelectTypeOpen} >{icon}</td>
                     }
                 </> : <></>}
                 <td className="entryTag">{tag}</td>

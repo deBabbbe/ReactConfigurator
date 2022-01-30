@@ -1,6 +1,6 @@
 import { v4 as uuid } from "uuid";
 import { useState } from "react";
-import { fileConfigEntry } from "../DataTypes/ConfigEntries";
+import { FileConfigEntry } from "../DataTypes/ConfigEntries";
 import { Constants } from "../DataTypes/Constants";
 import React from "react";
 import { ApplicationBar } from "./ApplicationBar";
@@ -11,7 +11,7 @@ import ConfigFileSelector from "./ConfigFileSelector";
 import SearchBar from "./SearchBar";
 import Entries from "./Entries";
 type ConfiguratorProps = {
-    loadedConfigs: fileConfigEntry[];
+    loadedConfigs: FileConfigEntry[];
 };
 
 export default function Configurator(props: ConfiguratorProps) {
@@ -110,8 +110,8 @@ export default function Configurator(props: ConfiguratorProps) {
                 />
                 <table>
                     <Entries
-                        data={filteredData}
-                        setData={setFilteredData}
+                        filteredData={filteredData}
+                        setFilteredData={setFilteredData}
                         removeEntry={removeEntry}
                         typeHidden={typeHidden}
                     ></Entries>
