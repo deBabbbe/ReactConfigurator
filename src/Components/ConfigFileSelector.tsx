@@ -1,5 +1,7 @@
+import { faExclamationTriangle } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
-import Select from "react-select";
+import Select, { components } from "react-select";
 
 type ConfigFileSelectorProps = {
   configFiles: string[];
@@ -9,12 +11,24 @@ type ConfigFileSelectorProps = {
 };
 
 export default function ConfigFileSelector(props: ConfigFileSelectorProps) {
+  const { Option } = components;
+  const IconOption = (propss: any) => (
+    <Option {...propss}>
+      {!!props.filesWithPleaseFillValue.find((f) => f === propss.data.label) ? (
+        <FontAwesomeIcon
+          id="configFileEntry"
+          icon={faExclamationTriangle}
+          size="lg"
+        />
+      ) : (
+        <></>
+      )}
+      {propss.data.label}
+    </Option>
+  );
+
   const options = props.configFiles.map((file) => {
-    let label = file;
-    if (!!props.filesWithPleaseFillValue.find((f) => f === file)) {
-      label += "\t!";
-    }
-    return { value: file, label };
+    return { value: file, label: file };
   });
 
   return (
@@ -23,6 +37,7 @@ export default function ConfigFileSelector(props: ConfigFileSelectorProps) {
       value={options.find((o) => o.value === props.configFileName)}
       onChange={(ch) => props.configFileChanged(ch?.value ? ch.value : "")}
       options={options}
+      components={{ Option: IconOption }}
     />
   );
 }
