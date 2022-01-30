@@ -1,11 +1,11 @@
 export interface ConfigEntry {
-    config: string,
-    type: string,
-    key: string
-    value: string
+  config: string;
+  type: string;
+  key: string;
+  value: string;
 }
 
 export interface FileConfigEntry {
-    fileName: string,
-    configs: ConfigEntry[],
+  fileName: string;
+  configs: ConfigEntry[];
 }

@@ -1,5 +1,5 @@
 /// <reference types="react-scripts" />
 
 interface String {
-    contains(subString, ignoreCase: boolean = false): boolean;
+  contains(subString, ignoreCase: boolean = false): boolean;
 }
