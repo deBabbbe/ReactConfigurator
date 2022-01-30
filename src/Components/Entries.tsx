@@ -35,6 +35,20 @@ export default function Entries(props: EntriesProps) {
       props.setFilteredData(data);
     };
   };
+
+  const setKey = (entry: ConfigEntry): ((type: string) => void) => {
+    return (value) => {
+      entry.value = value;
+      const data = props.filteredData.map((data) => {
+        if (data === entry) {
+          data.value = value;
+        }
+        return data;
+      });
+      props.setFilteredData(data);
+    };
+  };
+
   return (
     <>
       {props.filteredData.map((entry) => {
@@ -44,6 +58,7 @@ export default function Entries(props: EntriesProps) {
             entry={entry}
             setType={setType(entry)}
             setValue={setValue(entry)}
+            setKey={setKey(entry)}
             removeEntry={props.removeEntry}
           ></Entry>
         );
