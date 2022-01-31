@@ -48,10 +48,14 @@ export default function Configurator(props: ConfiguratorProps) {
     const data = dataOfCurrentConfig.filter((d) => {
       return d.key !== key;
     });
-    console.warn("gugg", data);
 
     setDataOfCurrentConfig(data);
     setFilteredData(data);
+    const configToChange =
+      props.loadedConfigs.filter((c) => c.fileName === configFileName)[0] ||
+      null;
+    const index = props.loadedConfigs.indexOf(configToChange);
+    props.loadedConfigs[index].configs = data;
   };
 
   const save = () => {
