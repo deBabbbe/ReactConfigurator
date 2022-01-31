@@ -42,7 +42,7 @@ export default function Entry(props: EntryProps) {
   );
 
   const removeEntryTag = (
-    <td>
+    <td id="remove-button-table">
       <span id="removeButton" onClick={removeEntry}>
         <FontAwesomeIcon icon={faBan} title="Löschen" />
       </span>
@@ -52,12 +52,18 @@ export default function Entry(props: EntryProps) {
   const configTypeTag = (
     <>
       {selectTypeOpen ? (
-        <ConfigTypeSelector
-          type={props.entry.type}
-          onSelect={configTypeChanged}
-        />
+        <td id="table-type-selector">
+          <ConfigTypeSelector
+            type={props.entry.type}
+            onSelect={configTypeChanged}
+          />
+        </td>
       ) : (
-        <td title={props.entry.type} onClick={toggleSelectTypeOpen}>
+        <td
+          id="table-type"
+          title={props.entry.type}
+          onClick={toggleSelectTypeOpen}
+        >
           {icon}
         </td>
       )}

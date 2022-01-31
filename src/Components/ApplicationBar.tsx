@@ -40,7 +40,11 @@ export function ApplicationBar(props: ApplicationBarProps) {
       <span id="applicationBarDefaultIcon">
         <FontAwesomeIcon icon={faInfoCircle} size="lg" title="Informationen" />
       </span>
-      <span id="applicationBarVersion">{packageJson.version}</span>
+      {window.innerWidth > 430 ? (
+        <span id="applicationBarVersion">{packageJson.version}</span>
+      ) : (
+        <></>
+      )}
       <span id="applicationBarDefaultIcon" onClick={props.logout}>
         <FontAwesomeIcon icon={faPowerOff} size="lg" title="Ausloggen" />
       </span>

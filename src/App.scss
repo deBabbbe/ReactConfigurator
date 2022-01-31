@@ -3,7 +3,7 @@
   height: 830px;
   font-size: calc(10px + 2vmin);
   color: white;
-  padding: 10px 50px 50px 50px;
+  padding: 10px 5px 0px 45px;
 }
 
 .ApplicationBar {
@@ -24,6 +24,10 @@
   color: white;
   padding: 10px;
   user-select: none;
+}
+
+select {
+  width: 100%;
 }
 
 .ConfigBar {
@@ -84,12 +88,22 @@
 table {
   width: 100%;
   margin: 10px 0;
+  table-layout: fixed;
 }
 
 td {
   width: 100%;
   padding-right: 10px;
   vertical-align: center;
+}
+
+#remove-button-table,
+#table-type {
+  width: 20px;
+}
+
+#table-type-selector {
+  width: 80px;
 }
 
 #configFile {
@@ -115,10 +129,6 @@ td {
 input {
   width: 100%;
   box-sizing: border-box;
-}
-
-.entryTag {
-  min-width: 230px;
 }
 
 .ConfigBarSplitter {
