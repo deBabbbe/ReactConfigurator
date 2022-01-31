@@ -4,4 +4,6 @@ export class Constants {
     BOOL: "bool",
     DATETIME: "DateTime",
   };
+
+  public static PLEASE_FILL_VALUE = "[PLEASE FILL VALUE]";
 }

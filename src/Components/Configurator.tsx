@@ -79,7 +79,9 @@ export default function Configurator(props: ConfiguratorProps) {
   };
 
   const filesWithPleaseFillValue = props.loadedConfigs
-    .filter((c) => !c.configs.every((ce) => ce.value !== "[PLEASE FILL VALUE]"))
+    .filter(
+      (c) => !c.configs.every((ce) => ce.value !== Constants.PLEASE_FILL_VALUE)
+    )
     .map((e) => e.fileName);
 
   return (

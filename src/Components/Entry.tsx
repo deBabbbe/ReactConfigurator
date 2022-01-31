@@ -6,6 +6,7 @@ import {
   getContentDependingOnType,
 } from "./Helper/EntryHelper";
 import { ConfigEntry } from "../DataTypes/ConfigEntries";
+import { Constants } from "../DataTypes/Constants";
 
 type EntryProps = {
   setType: (type: string) => void;
@@ -72,7 +73,11 @@ export default function Entry(props: EntryProps) {
 
   return (
     <tbody>
-      <tr>
+      <tr
+        className={
+          props.entry.value === Constants.PLEASE_FILL_VALUE ? "fill_value" : ""
+        }
+      >
         {entryKeyTag}
         {!props.typeHidden ? configTypeTag : <></>}
         <td className="entryTag">{valueTag}</td>
