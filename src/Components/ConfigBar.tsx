@@ -46,7 +46,6 @@ export function ConfigBar(props: ConfigBarProps) {
           return getIconForName(config, props.configFileChanged);
         })}
       </div>
-      <div className="ConfigBarSplitter"></div>
       <div className="ConfigBarFiller"></div>
     </div>
   );
