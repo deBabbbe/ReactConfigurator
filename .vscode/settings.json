@@ -1,0 +1,10 @@
+{
+  "compile-hero.disable-compile-files-on-did-save-code": true,
+  "files.exclude": {
+    "**/build": true,
+    "**/node_modules": true
+  },
+  "files.autoSave": "onWindowChange",
+  "editor.fontSize": 16,
+  "editor.wordWrapColumn": 150
+}
