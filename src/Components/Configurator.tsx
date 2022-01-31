@@ -43,6 +43,8 @@ export default function Configurator(props: ConfiguratorProps) {
     setDataOfCurrentConfig(newData);
     setFilterText("");
     setFilteredData(newData);
+    const index = getIndexOfCurrentConfigFile(props, configFileName);
+    props.loadedConfigs[index].configs = newData;
   };
 
   const removeEntry = (key: string) => {
@@ -52,10 +54,7 @@ export default function Configurator(props: ConfiguratorProps) {
 
     setDataOfCurrentConfig(data);
     setFilteredData(data);
-    const configToChange =
-      props.loadedConfigs.filter((c) => c.fileName === configFileName)[0] ||
-      null;
-    const index = props.loadedConfigs.indexOf(configToChange);
+    const index = getIndexOfCurrentConfigFile(props, configFileName);
     props.loadedConfigs[index].configs = data;
   };
 
@@ -121,4 +120,13 @@ export default function Configurator(props: ConfiguratorProps) {
       </header>
     </div>
   );
+}
+function getIndexOfCurrentConfigFile(
+  props: ConfiguratorProps,
+  configFileName: string
+) {
+  const configToChange =
+    props.loadedConfigs.filter((c) => c.fileName === configFileName)[0] || null;
+  const index = props.loadedConfigs.indexOf(configToChange);
+  return index;
 }
