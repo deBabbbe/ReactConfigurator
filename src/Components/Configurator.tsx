@@ -10,6 +10,7 @@ import { LogoutPage } from "./LogoutPage";
 import ConfigFileSelector from "./ConfigFileSelector";
 import SearchBar from "./SearchBar";
 import Entries from "./Entries";
+import FileSaver from "file-saver";
 type ConfiguratorProps = {
   loadedConfigs: FileConfigEntry[];
 };
@@ -59,7 +60,10 @@ export default function Configurator(props: ConfiguratorProps) {
   };
 
   const save = () => {
-    alert("gespeichert");
+    const blob = new Blob([JSON.stringify(props.loadedConfigs)], {
+      type: "application/json",
+    });
+    FileSaver.saveAs(blob, "config.json");
   };
 
   const logout = () => {
