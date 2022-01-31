@@ -15,22 +15,20 @@ type ConfiguratorProps = {
 };
 
 export default function Configurator(props: ConfiguratorProps) {
+  const initialConfigs = props.loadedConfigs[0];
   const [typeHidden, setTypeHidden] = useState(false);
-  const [configFileName, setConfigFileName] = useState(
-    props.loadedConfigs[0].fileName
-  );
-  const configs = props.loadedConfigs[0].configs;
-  const [data, setData] = useState(
-    configs.map((entry) => Object.assign(entry, { key: uuid() }))
+  const [configFileName, setConfigFileName] = useState(initialConfigs.fileName);
+  const [dataOfCurrentConfig, setDataOfCurrentConfig] = useState(
+    initialConfigs.configs.map((entry) => Object.assign(entry, { key: uuid() }))
   );
   const [loggedOut, setLoggedOut] = useState(false);
-  const [filteredData, setFilteredData] = useState(
-    configs.map((entry) => Object.assign(entry, { key: uuid() }))
-  );
+  const [filteredData, setFilteredData] = useState(dataOfCurrentConfig);
   const [filterText, setFilterText] = useState("");
 
   const filterConfigs = (filterValue: string) => {
-    setFilteredData(data.filter((d) => d.config.contains(filterValue)));
+    setFilteredData(
+      dataOfCurrentConfig.filter((d) => d.config.contains(filterValue))
+    );
     setFilterText(filterValue);
   };
 
@@ -41,19 +39,16 @@ export default function Configurator(props: ConfiguratorProps) {
       key: uuid(),
       value: "",
     };
-    setData([...data, entryToInsert]);
+    setDataOfCurrentConfig([...dataOfCurrentConfig, entryToInsert]);
     setFilterText("");
-    setFilteredData([...data, entryToInsert]);
-    props.loadedConfigs
-      .find((c) => c.fileName === configFileName)!
-      .configs.push(entryToInsert);
+    setFilteredData(dataOfCurrentConfig);
   };
 
   const removeEntry = (key: string) => {
-    const newState = filteredData.filter((d) => {
+    const data = dataOfCurrentConfig.filter((d) => {
       return d.key !== key;
     });
-    setFilteredData(newState);
+    setDataOfCurrentConfig(data);
   };
 
   const save = () => {
@@ -71,9 +66,9 @@ export default function Configurator(props: ConfiguratorProps) {
     )!.configs;
     configs.forEach((entry) => Object.assign(entry, { key: uuid() }));
 
-    setData(configs);
-    setFilteredData(configs);
+    setDataOfCurrentConfig(configs);
     setFilterText("");
+    setFilteredData(configs);
   };
 
   const filesWithPleaseFillValue = props.loadedConfigs
@@ -110,7 +105,7 @@ export default function Configurator(props: ConfiguratorProps) {
         <table>
           <Entries
             filteredData={filteredData}
-            setFilteredData={setFilteredData}
+            setDataOfCurrentConfig={setDataOfCurrentConfig}
             removeEntry={removeEntry}
             typeHidden={typeHidden}
           ></Entries>

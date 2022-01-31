@@ -4,7 +4,7 @@ import { ConfigEntry } from "../DataTypes/ConfigEntries";
 
 type EntriesProps = {
   filteredData: ConfigEntry[];
-  setFilteredData: (data: ConfigEntry[]) => void;
+  setDataOfCurrentConfig: (data: ConfigEntry[]) => void;
   removeEntry: (key: string) => void;
   typeHidden: boolean;
 };
@@ -19,33 +19,32 @@ export default function Entries(props: EntriesProps) {
         }
         return data;
       });
-      props.setFilteredData(data);
+      props.setDataOfCurrentConfig(data);
     };
   };
 
-  const setValue = (entry: ConfigEntry): ((type: string) => void) => {
+  const setValue = (entry: ConfigEntry): ((value: string) => void) => {
     return (value) => {
-      entry.value = value;
       const data = props.filteredData.map((data) => {
         if (data === entry) {
           data.value = value;
         }
         return data;
       });
-      props.setFilteredData(data);
+      props.setDataOfCurrentConfig(data);
     };
   };
 
-  const setKey = (entry: ConfigEntry): ((type: string) => void) => {
-    return (value) => {
-      entry.value = value;
+  const setConfig = (entry: ConfigEntry): ((configText: string) => void) => {
+    return (configText) => {
+      entry.config = configText;
       const data = props.filteredData.map((data) => {
         if (data === entry) {
-          data.value = value;
+          data.config = configText;
         }
         return data;
       });
-      props.setFilteredData(data);
+      props.setDataOfCurrentConfig(data);
     };
   };
 
@@ -58,7 +57,7 @@ export default function Entries(props: EntriesProps) {
             entry={entry}
             setType={setType(entry)}
             setValue={setValue(entry)}
-            setKey={setKey(entry)}
+            setKey={setConfig(entry)}
             removeEntry={props.removeEntry}
           ></Entry>
         );

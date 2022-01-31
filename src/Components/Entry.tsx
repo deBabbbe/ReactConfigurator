@@ -35,7 +35,7 @@ export default function Entry(props: EntryProps) {
   const entryKeyTag = (
     <td>
       <input
-        defaultValue={props.entry.config}
+        value={props.entry.config}
         onChange={(e) => props.setKey(e.target.value)}
       />
     </td>

@@ -68,7 +68,7 @@ export function getContentDependingOnType(
       <input
         placeholder="Please fill value"
         onChange={(e) => setValue(e.target.value)}
-        value={value}
+        value={value ? value : ""}
       ></input>
     );
     icon = <FontAwesomeIcon icon={faFileWord} />;
