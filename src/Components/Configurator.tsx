@@ -39,9 +39,10 @@ export default function Configurator(props: ConfiguratorProps) {
       key: uuid(),
       value: "",
     };
-    setDataOfCurrentConfig([...dataOfCurrentConfig, entryToInsert]);
+    const newData = [...dataOfCurrentConfig, entryToInsert];
+    setDataOfCurrentConfig(newData);
     setFilterText("");
-    setFilteredData(dataOfCurrentConfig);
+    setFilteredData(newData);
   };
 
   const removeEntry = (key: string) => {
