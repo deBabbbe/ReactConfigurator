@@ -18,7 +18,7 @@ type EntryProps = {
 
 export default function Entry(props: EntryProps) {
   const [selectTypeOpen, setSelectTypeOpen] = useState(false);
-  const { tag, icon } = getContentDependingOnType(
+  const { valueTag, icon } = getContentDependingOnType(
     props.entry,
     props.typeHidden,
     props.setValue
@@ -32,37 +32,45 @@ export default function Entry(props: EntryProps) {
     props.removeEntry(props.entry.key);
   };
 
+  const entryKeyTag = (
+    <td>
+      <input
+        defaultValue={props.entry.config}
+        onChange={(e) => props.setKey(e.target.value)}
+      />
+    </td>
+  );
+
+  const removeEntryTag = (
+    <td>
+      <span id="removeButton" onClick={removeEntry}>
+        <FontAwesomeIcon icon={faBan} title="Löschen" />
+      </span>
+    </td>
+  );
+
+  const configTypeTag = (
+    <>
+      {selectTypeOpen ? (
+        <ConfigTypeSelector
+          type={props.entry.type}
+          onSelect={configTypeChanged}
+        />
+      ) : (
+        <td title={props.entry.type} onClick={toggleSelectTypeOpen}>
+          {icon}
+        </td>
+      )}
+    </>
+  );
+
   return (
     <tbody>
       <tr>
-        <td>
-          <input
-            defaultValue={props.entry.config}
-            onChange={(e) => props.setKey(e.target.value)}
-          />
-        </td>
-        {!props.typeHidden ? (
-          <>
-            {selectTypeOpen ? (
-              <ConfigTypeSelector
-                type={props.entry.type}
-                onSelect={configTypeChanged}
-              />
-            ) : (
-              <td title={props.entry.type} onClick={toggleSelectTypeOpen}>
-                {icon}
-              </td>
-            )}
-          </>
-        ) : (
-          <></>
-        )}
-        <td className="entryTag">{tag}</td>
-        <td>
-          <span id="removeButton" onClick={removeEntry}>
-            <FontAwesomeIcon icon={faBan} title="Löschen" />
-          </span>
-        </td>
+        {entryKeyTag}
+        {!props.typeHidden ? configTypeTag : <></>}
+        <td className="entryTag">{valueTag}</td>
+        {removeEntryTag}
       </tr>
     </tbody>
   );

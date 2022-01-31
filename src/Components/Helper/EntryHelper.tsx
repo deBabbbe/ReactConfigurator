@@ -15,7 +15,7 @@ function getDate() {
 }
 
 type EntryContentResult = {
-  tag: JSX.Element;
+  valueTag: JSX.Element;
   icon: JSX.Element;
 };
 
@@ -48,13 +48,13 @@ export function getContentDependingOnType(
   setValue: (value: string) => void
 ): EntryContentResult {
   const { type, value } = entry;
-  let tag;
+  let valueTag;
   let icon;
   if (type === Constants.CONFIG_TYPES.BOOL && !typeHidden) {
-    tag = <BoolSelector value={value} setValue={setValue}></BoolSelector>;
+    valueTag = <BoolSelector value={value} setValue={setValue}></BoolSelector>;
     icon = <FontAwesomeIcon icon={faQuestion} />;
   } else if (type === Constants.CONFIG_TYPES.DATETIME && !typeHidden) {
-    tag = (
+    valueTag = (
       <input
         type="datetime-local"
         defaultValue={getDate()}
@@ -64,7 +64,7 @@ export function getContentDependingOnType(
     );
     icon = <FontAwesomeIcon icon={faClock} />;
   } else {
-    tag = (
+    valueTag = (
       <input
         placeholder="Please fill value"
         onChange={(e) => setValue(e.target.value)}
@@ -73,5 +73,5 @@ export function getContentDependingOnType(
     );
     icon = <FontAwesomeIcon icon={faFileWord} />;
   }
-  return { tag, icon };
+  return { valueTag, icon };
 }
