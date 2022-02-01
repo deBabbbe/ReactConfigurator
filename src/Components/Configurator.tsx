@@ -11,6 +11,7 @@ import ConfigFileSelector from "./ConfigFileSelector";
 import SearchBar from "./SearchBar";
 import Entries from "./Entries";
 import FileSaver from "file-saver";
+import { useEffect } from "react";
 type ConfiguratorProps = {
   loadedConfigs: FileConfigEntry[];
   setLoadedConfigs: (entries: FileConfigEntry[]) => void;
@@ -18,14 +19,25 @@ type ConfiguratorProps = {
 
 export default function Configurator(props: ConfiguratorProps) {
   const initialConfigs = props.loadedConfigs[0];
+  const dataOfCurrentConfgMapped = initialConfigs.configs.map((entry) =>
+    Object.assign(entry, { key: uuid() })
+  );
   const [typeHidden, setTypeHidden] = useState(false);
   const [configFileName, setConfigFileName] = useState(initialConfigs.fileName);
   const [dataOfCurrentConfig, setDataOfCurrentConfig] = useState(
-    initialConfigs.configs.map((entry) => Object.assign(entry, { key: uuid() }))
+    dataOfCurrentConfgMapped
   );
   const [loggedOut, setLoggedOut] = useState(false);
   const [filteredData, setFilteredData] = useState(dataOfCurrentConfig);
   const [filterText, setFilterText] = useState("");
+
+  useEffect(() => {
+    setTypeHidden(false);
+    setConfigFileName(initialConfigs.fileName);
+    setDataOfCurrentConfig(dataOfCurrentConfgMapped);
+    setFilteredData(dataOfCurrentConfgMapped);
+    setFilterText("");
+  }, [initialConfigs]);
 
   const filterConfigs = (filterValue: string) => {
     setFilteredData(

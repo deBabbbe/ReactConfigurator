@@ -5,6 +5,7 @@ import { FileConfigEntry } from "../DataTypes/ConfigEntries";
 
 export interface UploadConfigFileProps {
   setLoadedConfigs: (entries: FileConfigEntry[]) => void;
+  loggedOut: boolean;
 }
 
 export default function UploadConfigFile(props: UploadConfigFileProps) {
@@ -13,6 +14,7 @@ export default function UploadConfigFile(props: UploadConfigFileProps) {
   const openpDialog = () => {
     inputFile?.current?.click();
   };
+
   return (
     <>
       <input
@@ -28,7 +30,7 @@ export default function UploadConfigFile(props: UploadConfigFileProps) {
             .then((content) => props.setLoadedConfigs(JSON.parse(content)))
         }
       />
-      <span id="uploadButton">
+      <span id="uploadButton" hidden={props.loggedOut}>
         <FontAwesomeIcon
           icon={faFolderOpen}
           onClick={openpDialog}

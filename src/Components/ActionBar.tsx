@@ -29,7 +29,10 @@ export function ActionBar(props: ActionBarProps) {
       <span id="saveButton" onClick={props.save} hidden={props.loggedOut}>
         <FontAwesomeIcon icon={faSave} size="lg" title="Speichern" />
       </span>
-      <UploadConfigFile setLoadedConfigs={props.setLoadedConfigs} />
+      <UploadConfigFile
+        setLoadedConfigs={props.setLoadedConfigs}
+        loggedOut={props.loggedOut}
+      />
       <span id="addButton" onClick={props.addEntry} hidden={props.loggedOut}>
         <FontAwesomeIcon icon={faPlusSquare} size="lg" title="Hinzufügen" />
       </span>
