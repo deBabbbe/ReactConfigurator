@@ -24,11 +24,12 @@ export default function UploadConfigFile(props: UploadConfigFileProps) {
         style={{ display: "none" }}
         accept=".json"
         multiple={false}
-        onChange={(e) =>
-          e
-            .target!.files![0].text()
-            .then((content) => props.setLoadedConfigs(JSON.parse(content)))
-        }
+        onChange={(e) => {
+          e.target!.files![0].text().then((content) =>
+            props.setLoadedConfigs(JSON.parse(content))
+          );
+          e.target.value = "";
+        }}
       />
       <span id="uploadButton" hidden={props.loggedOut}>
         <FontAwesomeIcon

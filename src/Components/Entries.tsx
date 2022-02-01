@@ -1,7 +1,6 @@
 import React from "react";
 import Entry from "./Entry";
 import { ConfigEntry } from "../DataTypes/ConfigEntries";
-import { v4 as uuid } from "uuid";
 
 type EntriesProps = {
   filteredData: ConfigEntry[];

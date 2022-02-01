@@ -1,6 +1,6 @@
 import { v4 as uuid } from "uuid";
 import { useState } from "react";
-import { FileConfigEntry } from "../DataTypes/ConfigEntries";
+import { ConfigEntry, FileConfigEntry } from "../DataTypes/ConfigEntries";
 import { Constants } from "../DataTypes/Constants";
 import React from "react";
 import { ApplicationBar } from "./ApplicationBar";
@@ -19,19 +19,25 @@ type ConfiguratorProps = {
 
 export default function Configurator(props: ConfiguratorProps) {
   const initialConfigs = props.loadedConfigs[0];
-  const dataOfCurrentConfgMapped = initialConfigs.configs.map((entry) =>
-    Object.assign(entry, { key: uuid() })
-  );
+  const getDataOfCurrentConfigMapped = (
+    configs: ConfigEntry[]
+  ): (ConfigEntry & {
+    key: string;
+  })[] => configs.map((entry) => Object.assign(entry, { key: uuid() }));
+
   const [typeHidden, setTypeHidden] = useState(false);
   const [configFileName, setConfigFileName] = useState(initialConfigs.fileName);
   const [dataOfCurrentConfig, setDataOfCurrentConfig] = useState(
-    dataOfCurrentConfgMapped
+    getDataOfCurrentConfigMapped(initialConfigs.configs)
   );
   const [loggedOut, setLoggedOut] = useState(false);
   const [filteredData, setFilteredData] = useState(dataOfCurrentConfig);
   const [filterText, setFilterText] = useState("");
 
   useEffect(() => {
+    const dataOfCurrentConfgMapped = getDataOfCurrentConfigMapped(
+      initialConfigs.configs
+    );
     setTypeHidden(false);
     setConfigFileName(initialConfigs.fileName);
     setDataOfCurrentConfig(dataOfCurrentConfgMapped);
