@@ -16,6 +16,7 @@ import { useEffect } from "react";
 interface ConfiguratorProps {
   loadedConfigs: FileConfigEntry[];
   setLoadedConfigs: (entries: FileConfigEntry[]) => void;
+  setReloadSettings: (value: string) => void;
 }
 
 const getDataOfCurrentConfigMapped = (configs: ConfigEntry[]): typeof configs => configs.map((entry) => Object.assign(entry, { key: uuid() }));
@@ -28,16 +29,15 @@ export default function Configurator(props: ConfiguratorProps) {
   const [filteredData, setFilteredData] = useState([] as ConfigEntry[]);
   const [filterText, setFilterText] = useState("");
 
-  const initialConfigs = props.loadedConfigs[0];
-
   useEffect(() => {
+    const initialConfigs = props.loadedConfigs[0];
     const dataOfCurrentConfgMapped = getDataOfCurrentConfigMapped(initialConfigs.configs);
     setTypeHidden(false);
     setConfigFileName(initialConfigs.fileName);
     setDataOfCurrentConfig(dataOfCurrentConfgMapped);
     setFilteredData(dataOfCurrentConfgMapped);
     setFilterText("");
-  }, [initialConfigs]);
+  }, [props.loadedConfigs]);
 
   const filterConfigs = (filterValue: string) => {
     setFilteredData(dataOfCurrentConfig.filter((d) => d.config.contains(filterValue)));
@@ -105,6 +105,7 @@ export default function Configurator(props: ConfiguratorProps) {
         typeHidden={typeHidden}
         setTypeHidden={setTypeHidden}
         setLoadedConfigs={props.setLoadedConfigs}
+        setReloadSettings={props.setReloadSettings}
       />
       <ConfigBar configFiles={props.loadedConfigs.map((c) => c.fileName)} configFileChanged={setConfigFileChanged} />
       {loggedOut && <LogoutPage></LogoutPage>}

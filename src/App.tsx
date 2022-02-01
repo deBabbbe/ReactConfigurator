@@ -5,22 +5,18 @@ import "./App.scss";
 
 export default function App() {
   const [isInitialized, setIsInitialized] = useState(false);
+  const [reloadSettings, setReloadSettings] = useState("");
   const [loadedConfigs, setLoadedConfigs] = useState([] as FileConfigEntry[]);
+
   useEffect(() => {
-    const configs = require("./loadedConfigs.json") as FileConfigEntry[];
+    setIsInitialized(false);
+    const configs = JSON.parse(JSON.stringify(require("./loadedConfigs.json"))) as FileConfigEntry[];
     setLoadedConfigs(configs);
     if (configs) setIsInitialized(true);
-  }, []);
+  }, [reloadSettings]);
 
   if (isInitialized) {
-    return (
-      <Configurator
-        setLoadedConfigs={(configs) => {
-          setLoadedConfigs(configs);
-        }}
-        loadedConfigs={loadedConfigs}
-      ></Configurator>
-    );
+    return <Configurator setLoadedConfigs={setLoadedConfigs} loadedConfigs={loadedConfigs} setReloadSettings={setReloadSettings}></Configurator>;
   }
   return <></>;
 }
