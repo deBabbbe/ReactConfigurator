@@ -21,9 +21,8 @@ export default function Configurator(props: ConfiguratorProps) {
   const initialConfigs = props.loadedConfigs[0];
   const getDataOfCurrentConfigMapped = (
     configs: ConfigEntry[]
-  ): (ConfigEntry & {
-    key: string;
-  })[] => configs.map((entry) => Object.assign(entry, { key: uuid() }));
+  ): ConfigEntry[] =>
+    configs.map((entry) => Object.assign(entry, { key: uuid() }));
 
   const [typeHidden, setTypeHidden] = useState(false);
   const [configFileName, setConfigFileName] = useState(initialConfigs.fileName);
