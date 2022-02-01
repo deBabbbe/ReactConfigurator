@@ -1,6 +1,7 @@
 import React from "react";
 import Entry from "./Entry";
 import { ConfigEntry } from "../DataTypes/ConfigEntries";
+import { v4 as uuid } from "uuid";
 
 type EntriesProps = {
   filteredData: ConfigEntry[];
@@ -53,6 +54,7 @@ export default function Entries(props: EntriesProps) {
       {props.filteredData.map((entry) => {
         return (
           <Entry
+            key={entry.key}
             typeHidden={props.typeHidden}
             entry={entry}
             setType={setType(entry)}

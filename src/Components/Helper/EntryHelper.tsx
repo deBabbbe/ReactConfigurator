@@ -9,6 +9,7 @@ import { Constants } from "../../DataTypes/Constants";
 import moment from "moment";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { ConfigEntry } from "../../DataTypes/ConfigEntries";
+import { v4 as uuid } from "uuid";
 
 function getDate() {
   return moment().format("YYYY-MM-DDTHH:mm:ss");
@@ -31,7 +32,7 @@ export function ConfigTypeSelector(props: ConfigTypeSelectorProps) {
     Constants.CONFIG_TYPES.DATETIME,
     Constants.CONFIG_TYPES.STRING,
   ];
-  const options = types.map((file) => <option>{file}</option>);
+  const options = types.map((file) => <option key={uuid()}>{file}</option>);
   return (
     <select
       id="configType"
@@ -57,9 +58,8 @@ export function getContentDependingOnType(
     valueTag = (
       <input
         type="datetime-local"
-        defaultValue={getDate()}
         onChange={(e) => setValue(e.target.value)}
-        value={value}
+        value={value ? value : getDate()}
       ></input>
     );
     icon = <FontAwesomeIcon icon={faClock} />;

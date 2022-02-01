@@ -8,7 +8,6 @@ type BoolSelectorProps = {
 export default function BoolSelector(props: BoolSelectorProps) {
   return (
     <select
-      defaultValue=" -- select an option -- "
       value={props.value}
       onChange={(e) => props.setValue(e.target.value)}
     >
