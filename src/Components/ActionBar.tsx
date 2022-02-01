@@ -6,6 +6,8 @@ import {
   faPlusSquare,
   faEyeSlash,
 } from "@fortawesome/free-solid-svg-icons";
+import UploadConfigFile from "./UploadConfigFile";
+import { FileConfigEntry } from "../DataTypes/ConfigEntries";
 
 type ActionBarProps = {
   save: () => void;
@@ -13,6 +15,7 @@ type ActionBarProps = {
   loggedOut: boolean;
   setTypeHidden: (value: boolean) => void;
   typeHidden: boolean;
+  setLoadedConfigs: (content: FileConfigEntry[]) => void;
 };
 
 export function ActionBar(props: ActionBarProps) {
@@ -26,6 +29,7 @@ export function ActionBar(props: ActionBarProps) {
       <span id="saveButton" onClick={props.save} hidden={props.loggedOut}>
         <FontAwesomeIcon icon={faSave} size="lg" title="Speichern" />
       </span>
+      <UploadConfigFile setLoadedConfigs={props.setLoadedConfigs} />
       <span id="addButton" onClick={props.addEntry} hidden={props.loggedOut}>
         <FontAwesomeIcon icon={faPlusSquare} size="lg" title="Hinzufügen" />
       </span>

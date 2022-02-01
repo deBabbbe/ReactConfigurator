@@ -13,6 +13,7 @@ import Entries from "./Entries";
 import FileSaver from "file-saver";
 type ConfiguratorProps = {
   loadedConfigs: FileConfigEntry[];
+  setLoadedConfigs: (entries: FileConfigEntry[]) => void;
 };
 
 export default function Configurator(props: ConfiguratorProps) {
@@ -70,7 +71,7 @@ export default function Configurator(props: ConfiguratorProps) {
     setLoggedOut(!loggedOut);
   };
 
-  const configFileChanged = (value: string): void => {
+  const setConfigFileChanged = (value: string): void => {
     setConfigFileName(value);
     const configs = props.loadedConfigs.find(
       (c) => c.fileName === value
@@ -97,17 +98,18 @@ export default function Configurator(props: ConfiguratorProps) {
         save={save}
         typeHidden={typeHidden}
         setTypeHidden={setTypeHidden}
+        setLoadedConfigs={props.setLoadedConfigs}
       />
       <ConfigBar
         configFiles={props.loadedConfigs.map((c) => c.fileName)}
-        configFileChanged={configFileChanged}
+        configFileChanged={setConfigFileChanged}
       />
       {loggedOut && <LogoutPage></LogoutPage>}
       <header className="App-header" hidden={loggedOut}>
         <ConfigFileSelector
           configFiles={props.loadedConfigs.map((c) => c.fileName)}
           configFileName={configFileName}
-          configFileChanged={configFileChanged}
+          configFileChanged={setConfigFileChanged}
           filesWithPleaseFillValue={filesWithPleaseFillValue}
         ></ConfigFileSelector>
         <SearchBar
