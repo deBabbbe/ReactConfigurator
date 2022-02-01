@@ -17,26 +17,20 @@ type ConfiguratorProps = {
   setLoadedConfigs: (entries: FileConfigEntry[]) => void;
 };
 
-export default function Configurator(props: ConfiguratorProps) {
-  const initialConfigs = props.loadedConfigs[0];
-  const getDataOfCurrentConfigMapped = (
-    configs: ConfigEntry[]
-  ): ConfigEntry[] =>
-    configs.map((entry) => Object.assign(entry, { key: uuid() }));
+const getDataOfCurrentConfigMapped = (configs: ConfigEntry[]): typeof configs => configs.map((entry) => Object.assign(entry, { key: uuid() }));
 
+export default function Configurator(props: ConfiguratorProps) {
   const [typeHidden, setTypeHidden] = useState(false);
-  const [configFileName, setConfigFileName] = useState(initialConfigs.fileName);
-  const [dataOfCurrentConfig, setDataOfCurrentConfig] = useState(
-    getDataOfCurrentConfigMapped(initialConfigs.configs)
-  );
+  const [configFileName, setConfigFileName] = useState("");
+  const [dataOfCurrentConfig, setDataOfCurrentConfig] = useState([] as ConfigEntry[]);
   const [loggedOut, setLoggedOut] = useState(false);
-  const [filteredData, setFilteredData] = useState(dataOfCurrentConfig);
+  const [filteredData, setFilteredData] = useState([] as ConfigEntry[]);
   const [filterText, setFilterText] = useState("");
 
+  const initialConfigs = props.loadedConfigs[0];
+
   useEffect(() => {
-    const dataOfCurrentConfgMapped = getDataOfCurrentConfigMapped(
-      initialConfigs.configs
-    );
+    const dataOfCurrentConfgMapped = getDataOfCurrentConfigMapped(initialConfigs.configs);
     setTypeHidden(false);
     setConfigFileName(initialConfigs.fileName);
     setDataOfCurrentConfig(dataOfCurrentConfgMapped);
@@ -45,9 +39,7 @@ export default function Configurator(props: ConfiguratorProps) {
   }, [initialConfigs]);
 
   const filterConfigs = (filterValue: string) => {
-    setFilteredData(
-      dataOfCurrentConfig.filter((d) => d.config.contains(filterValue))
-    );
+    setFilteredData(dataOfCurrentConfig.filter((d) => d.config.contains(filterValue)));
     setFilterText(filterValue);
   };
 
@@ -90,9 +82,7 @@ export default function Configurator(props: ConfiguratorProps) {
 
   const setConfigFileChanged = (value: string): void => {
     setConfigFileName(value);
-    const configs = props.loadedConfigs.find(
-      (c) => c.fileName === value
-    )!.configs;
+    const configs = props.loadedConfigs.find((c) => c.fileName === value)!.configs;
     configs.forEach((entry) => Object.assign(entry, { key: uuid() }));
 
     setDataOfCurrentConfig(configs);
@@ -101,9 +91,7 @@ export default function Configurator(props: ConfiguratorProps) {
   };
 
   const filesWithPleaseFillValue = props.loadedConfigs
-    .filter(
-      (c) => !c.configs.every((ce) => ce.value !== Constants.PLEASE_FILL_VALUE)
-    )
+    .filter((c) => !c.configs.every((ce) => ce.value !== Constants.PLEASE_FILL_VALUE))
     .map((e) => e.fileName);
 
   return (
@@ -117,10 +105,7 @@ export default function Configurator(props: ConfiguratorProps) {
         setTypeHidden={setTypeHidden}
         setLoadedConfigs={props.setLoadedConfigs}
       />
-      <ConfigBar
-        configFiles={props.loadedConfigs.map((c) => c.fileName)}
-        configFileChanged={setConfigFileChanged}
-      />
+      <ConfigBar configFiles={props.loadedConfigs.map((c) => c.fileName)} configFileChanged={setConfigFileChanged} />
       {loggedOut && <LogoutPage></LogoutPage>}
       <header className="App-header" hidden={loggedOut}>
         <ConfigFileSelector
@@ -129,11 +114,7 @@ export default function Configurator(props: ConfiguratorProps) {
           configFileChanged={setConfigFileChanged}
           filesWithPleaseFillValue={filesWithPleaseFillValue}
         ></ConfigFileSelector>
-        <SearchBar
-          filterConfigs={filterConfigs}
-          filterText={filterText}
-          addEntry={addEntry}
-        />
+        <SearchBar filterConfigs={filterConfigs} filterText={filterText} addEntry={addEntry} />
         <table>
           <Entries
             filteredData={filteredData}
@@ -146,12 +127,8 @@ export default function Configurator(props: ConfiguratorProps) {
     </div>
   );
 }
-function getIndexOfCurrentConfigFile(
-  props: ConfiguratorProps,
-  configFileName: string
-) {
-  const configToChange =
-    props.loadedConfigs.filter((c) => c.fileName === configFileName)[0] || null;
+function getIndexOfCurrentConfigFile(props: ConfiguratorProps, configFileName: string) {
+  const configToChange = props.loadedConfigs.filter((c) => c.fileName === configFileName)[0] || null;
   const index = props.loadedConfigs.indexOf(configToChange);
   return index;
 }
