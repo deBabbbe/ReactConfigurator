@@ -9,6 +9,7 @@ import {
   faQuestionCircle,
   faUser,
 } from "@fortawesome/free-solid-svg-icons";
+import { useWindowWidth } from "@react-hook/window-size";
 
 type ApplicationBarProps = {
   logout: () => void;
@@ -40,7 +41,7 @@ export function ApplicationBar(props: ApplicationBarProps) {
       <span id="applicationBarDefaultIcon">
         <FontAwesomeIcon icon={faInfoCircle} size="lg" title="Informationen" />
       </span>
-      {window.innerWidth > 430 ? (
+      {useWindowWidth() > 430 ? (
         <span id="applicationBarVersion">{packageJson.version}</span>
       ) : (
         <></>
