@@ -3,23 +3,19 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import Select, { components } from "react-select";
 
-type ConfigFileSelectorProps = {
+interface ConfigFileSelectorProps {
   configFiles: string[];
   configFileName: string;
   configFileChanged: (value: string) => void;
   filesWithPleaseFillValue: string[];
-};
+}
 
 export default function ConfigFileSelector(props: ConfigFileSelectorProps) {
   const { Option } = components;
   const IconOption = (propss: any) => (
     <Option {...propss}>
       {!!props.filesWithPleaseFillValue.find((f) => f === propss.data.label) ? (
-        <FontAwesomeIcon
-          id="configFileEntry"
-          icon={faExclamationTriangle}
-          size="lg"
-        />
+        <FontAwesomeIcon id="configFileEntry" icon={faExclamationTriangle} size="lg" />
       ) : (
         <></>
       )}

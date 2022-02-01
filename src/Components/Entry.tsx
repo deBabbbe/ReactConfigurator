@@ -1,29 +1,22 @@
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBan } from "@fortawesome/free-solid-svg-icons";
-import {
-  ConfigTypeSelector,
-  getContentDependingOnType,
-} from "./Helper/EntryHelper";
+import { ConfigTypeSelector, getContentDependingOnType } from "./Helper/EntryHelper";
 import { ConfigEntry } from "../DataTypes/ConfigEntries";
 import { Constants } from "../DataTypes/Constants";
 
-type EntryProps = {
+interface EntryProps {
   setType: (type: string) => void;
   setValue: (value: string) => void;
   setKey: (key: string) => void;
   removeEntry: (key: string) => void;
   entry: ConfigEntry;
   typeHidden: boolean;
-};
+}
 
 export default function Entry(props: EntryProps) {
   const [selectTypeOpen, setSelectTypeOpen] = useState(false);
-  const { valueTag, icon } = getContentDependingOnType(
-    props.entry,
-    props.typeHidden,
-    props.setValue
-  );
+  const { valueTag, icon } = getContentDependingOnType(props.entry, props.typeHidden, props.setValue);
   const toggleSelectTypeOpen = () => setSelectTypeOpen(!selectTypeOpen);
   const configTypeChanged = (value: string) => {
     toggleSelectTypeOpen();
@@ -35,10 +28,7 @@ export default function Entry(props: EntryProps) {
 
   const entryKeyTag = (
     <td>
-      <input
-        value={props.entry.config}
-        onChange={(e) => props.setKey(e.target.value)}
-      />
+      <input value={props.entry.config} onChange={(e) => props.setKey(e.target.value)} />
     </td>
   );
 
@@ -54,17 +44,10 @@ export default function Entry(props: EntryProps) {
     <>
       {selectTypeOpen ? (
         <td id="table-type-selector">
-          <ConfigTypeSelector
-            type={props.entry.type}
-            onSelect={configTypeChanged}
-          />
+          <ConfigTypeSelector type={props.entry.type} onSelect={configTypeChanged} />
         </td>
       ) : (
-        <td
-          id="table-type"
-          title={props.entry.type}
-          onClick={toggleSelectTypeOpen}
-        >
+        <td id="table-type" title={props.entry.type} onClick={toggleSelectTypeOpen}>
           {icon}
         </td>
       )}
@@ -73,11 +56,7 @@ export default function Entry(props: EntryProps) {
 
   return (
     <tbody>
-      <tr
-        className={
-          props.entry.value === Constants.PLEASE_FILL_VALUE ? "fill_value" : ""
-        }
-      >
+      <tr className={props.entry.value === Constants.PLEASE_FILL_VALUE ? "fill_value" : ""}>
         {entryKeyTag}
         {!props.typeHidden ? configTypeTag : <></>}
         <td className="entryTag">{valueTag}</td>

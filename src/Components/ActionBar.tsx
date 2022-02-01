@@ -1,22 +1,17 @@
 import * as React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faRedoAlt,
-  faSave,
-  faPlusSquare,
-  faEyeSlash,
-} from "@fortawesome/free-solid-svg-icons";
+import { faRedoAlt, faSave, faPlusSquare, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import UploadConfigFile from "./UploadConfigFile";
 import { FileConfigEntry } from "../DataTypes/ConfigEntries";
 
-type ActionBarProps = {
+interface ActionBarProps {
   save: () => void;
   addEntry: () => void;
   loggedOut: boolean;
   setTypeHidden: (value: boolean) => void;
   typeHidden: boolean;
   setLoadedConfigs: (content: FileConfigEntry[]) => void;
-};
+}
 
 export function ActionBar(props: ActionBarProps) {
   const toggleHidden = () => props.setTypeHidden(!props.typeHidden);
@@ -29,20 +24,12 @@ export function ActionBar(props: ActionBarProps) {
       <span id="saveButton" onClick={props.save} hidden={props.loggedOut}>
         <FontAwesomeIcon icon={faSave} size="lg" title="Speichern" />
       </span>
-      <UploadConfigFile
-        setLoadedConfigs={props.setLoadedConfigs}
-        loggedOut={props.loggedOut}
-      />
+      <UploadConfigFile setLoadedConfigs={props.setLoadedConfigs} loggedOut={props.loggedOut} />
       <span id="addButton" onClick={props.addEntry} hidden={props.loggedOut}>
         <FontAwesomeIcon icon={faPlusSquare} size="lg" title="Hinzufügen" />
       </span>
       <span id="hideButton" onClick={toggleHidden} hidden={props.loggedOut}>
-        <FontAwesomeIcon
-          icon={faEyeSlash}
-          size="lg"
-          title="Type ausblenden"
-          className={props.typeHidden ? "hidden" : ""}
-        />
+        <FontAwesomeIcon icon={faEyeSlash} size="lg" title="Typ ausblenden" className={props.typeHidden ? "hidden" : ""} />
       </span>
     </div>
   );

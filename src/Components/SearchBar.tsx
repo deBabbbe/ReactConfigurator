@@ -1,10 +1,10 @@
 import React from "react";
 
-type SearchBarProps = {
+interface SearchBarProps {
   filterConfigs: (filter: string) => void;
   filterText: string;
   addEntry: () => void;
-};
+}
 
 export default function SearchBar(props: SearchBarProps) {
   const changeFilter = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -21,11 +21,7 @@ export default function SearchBar(props: SearchBarProps) {
 
   return (
     <div id="searchBar">
-      <input
-        value={props.filterText}
-        onChange={changeFilter}
-        onKeyDown={handleKeyDown}
-      ></input>
+      <input value={props.filterText} onChange={changeFilter} onKeyDown={handleKeyDown}></input>
     </div>
   );
 }

@@ -2,12 +2,12 @@ import React from "react";
 import Entry from "./Entry";
 import { ConfigEntry } from "../DataTypes/ConfigEntries";
 
-type EntriesProps = {
+interface EntriesProps {
   filteredData: ConfigEntry[];
   setDataOfCurrentConfig: (data: ConfigEntry[]) => void;
   removeEntry: (key: string) => void;
   typeHidden: boolean;
-};
+}
 
 export default function Entries(props: EntriesProps) {
   const setType = (entry: ConfigEntry): ((type: string) => void) => {

@@ -12,10 +12,11 @@ import SearchBar from "./SearchBar";
 import Entries from "./Entries";
 import FileSaver from "file-saver";
 import { useEffect } from "react";
-type ConfiguratorProps = {
+
+interface ConfiguratorProps {
   loadedConfigs: FileConfigEntry[];
   setLoadedConfigs: (entries: FileConfigEntry[]) => void;
-};
+}
 
 const getDataOfCurrentConfigMapped = (configs: ConfigEntry[]): typeof configs => configs.map((entry) => Object.assign(entry, { key: uuid() }));
 
