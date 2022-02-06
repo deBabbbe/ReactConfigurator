@@ -59,10 +59,13 @@ export default function Configurator(props: ConfiguratorProps) {
     props.loadedConfigs[index].configs = newData;
   };
 
+  const isNotEqualString = (keyName: string): ((compKey: ConfigEntry) => boolean) => {
+    return (compKey) => keyName === compKey.key;
+  };
+
   const removeEntry = (key: string) => {
-    const data = dataOfCurrentConfig.filter((d) => {
-      return d.key !== key;
-    });
+    const isNotKey = isNotEqualString(key);
+    const data = dataOfCurrentConfig.filter(isNotKey);
 
     setDataOfCurrentConfig(data);
     setFilteredData(data);
@@ -91,9 +94,9 @@ export default function Configurator(props: ConfiguratorProps) {
     setFilteredData(configs);
   };
 
-  const filesWithPleaseFillValue = props.loadedConfigs
-    .filter((c) => !c.configs.every((ce) => ce.value !== Constants.PLEASE_FILL_VALUE))
-    .map((e) => e.fileName);
+  const isNotPleaseFillValue = isNotEqualString(Constants.PLEASE_FILL_VALUE);
+
+  const filesWithPleaseFillValue = props.loadedConfigs.filter((c) => !c.configs.every(isNotPleaseFillValue)).map((e) => e.fileName);
 
   return (
     <div className="App">
