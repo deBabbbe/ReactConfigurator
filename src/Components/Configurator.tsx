@@ -39,8 +39,13 @@ export default function Configurator(props: ConfiguratorProps) {
     setFilterText("");
   }, [props.loadedConfigs]);
 
+  const contains = (value: string): ((entry: ConfigEntry) => boolean) => {
+    return (entry: ConfigEntry) => entry.config.contains(value);
+  };
+
   const filterConfigs = (filterValue: string) => {
-    setFilteredData(dataOfCurrentConfig.filter((d) => d.config.contains(filterValue)));
+    const containsFilterValue = contains(filterValue);
+    setFilteredData(dataOfCurrentConfig.filter(containsFilterValue));
     setFilterText(filterValue);
   };
 
