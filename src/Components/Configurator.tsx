@@ -12,6 +12,7 @@ import SearchBar from "./SearchBar";
 import Entries from "./Entries";
 import FileSaver from "file-saver";
 import { useEffect } from "react";
+import produce from "immer";
 
 interface ConfiguratorProps {
   loadedConfigs: FileConfigEntry[];
@@ -50,13 +51,15 @@ export default function Configurator(props: ConfiguratorProps) {
   };
 
   const addEntry = () => {
-    const entryToInsert = {
-      config: filterText,
-      type: Constants.CONFIG_TYPES.STRING,
-      key: uuid(),
-      value: "",
-    };
-    const newData = [...dataOfCurrentConfig, entryToInsert];
+    const newData = produce(dataOfCurrentConfig, (draft) => {
+      draft.push({
+        config: filterText,
+        type: Constants.CONFIG_TYPES.STRING,
+        key: uuid(),
+        value: "",
+      });
+    });
+
     setDataOfCurrentConfig(newData);
     setFilterText("");
     setFilteredData(newData);
@@ -64,13 +67,13 @@ export default function Configurator(props: ConfiguratorProps) {
     props.loadedConfigs[index].configs = newData;
   };
 
-  const isNotEqualString = (keyName: string): ((compKey: ConfigEntry) => boolean) => {
-    return (compKey) => keyName === compKey.key;
+  const isNotEqualKey = (keyName: string): ((compKey: ConfigEntry) => boolean) => {
+    return (compKey) => keyName !== compKey.key;
   };
 
   const removeEntry = (key: string) => {
-    const isNotKey = isNotEqualString(key);
-    const data = dataOfCurrentConfig.filter(isNotKey);
+    const isNotKey = isNotEqualKey(key);
+    const data = produce(dataOfCurrentConfig, (draft) => draft.filter(isNotKey));
 
     setDataOfCurrentConfig(data);
     setFilteredData(data);
@@ -99,7 +102,7 @@ export default function Configurator(props: ConfiguratorProps) {
     setFilteredData(configs);
   };
 
-  const isNotPleaseFillValue = isNotEqualString(Constants.PLEASE_FILL_VALUE);
+  const isNotPleaseFillValue = isNotEqualKey(Constants.PLEASE_FILL_VALUE);
 
   const filesWithPleaseFillValue = props.loadedConfigs.filter((c) => !c.configs.every(isNotPleaseFillValue)).map((e) => e.fileName);
 
