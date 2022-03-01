@@ -1,7 +1,5 @@
-declare global {
-  interface String {
-    (subString: string, ignoreCase: boolean): boolean;
-  }
+export interface String {
+  contains(subString: string, ignoreCase: boolean): boolean;
 }
 
 // eslint-disable-next-line
@@ -12,5 +10,3 @@ String.prototype.contains = function (subString: string, ignoreCase: boolean = t
     return this.includes(subString);
   }
 };
-
-export {};

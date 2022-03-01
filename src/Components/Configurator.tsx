@@ -1,5 +1,5 @@
 import { v4 as uuid } from "uuid";
-import { useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import { ConfigEntry, FileConfigEntry } from "../DataTypes/ConfigEntries";
 import { Constants } from "../DataTypes/Constants";
 import React from "react";
@@ -17,7 +17,7 @@ import produce from "immer";
 interface ConfiguratorProps {
   loadedConfigs: FileConfigEntry[];
   setLoadedConfigs: (entries: FileConfigEntry[]) => void;
-  setReloadSettings: (value: string) => void;
+  setReloadSettings: Dispatch<SetStateAction<string>>;
 }
 
 const getDataOfCurrentConfigMapped = (configs: ConfigEntry[]): typeof configs => configs.map((entry) => Object.assign(entry, { key: uuid() }));

@@ -4,6 +4,7 @@ import { faRedoAlt, faSave, faPlusSquare, faEyeSlash } from "@fortawesome/free-s
 import UploadConfigFile from "./UploadConfigFile";
 import { FileConfigEntry } from "../DataTypes/ConfigEntries";
 import { v4 as uuid } from "uuid";
+import { Dispatch, SetStateAction } from "react";
 
 interface ActionBarProps {
   save: () => void;
@@ -12,7 +13,7 @@ interface ActionBarProps {
   setTypeHidden: (value: boolean) => void;
   typeHidden: boolean;
   setLoadedConfigs: (content: FileConfigEntry[]) => void;
-  setReloadSettings: (value: string) => void;
+  setReloadSettings: Dispatch<SetStateAction<string>>;
 }
 
 export function ActionBar(props: ActionBarProps) {
@@ -20,7 +21,7 @@ export function ActionBar(props: ActionBarProps) {
   return (
     <div className="ActionBar">
       Configurator
-      <span id="refreshButton" onClick={() => props.setReloadSettings(uuid())} hidden={props.loggedOut}>
+      <span id="refreshButton" onClick={() => props.setReloadSettings(uuid().toString())} hidden={props.loggedOut}>
         <FontAwesomeIcon icon={faRedoAlt} size="lg" title="Neu laden" />
       </span>
       <span id="saveButton" onClick={props.save} hidden={props.loggedOut}>
