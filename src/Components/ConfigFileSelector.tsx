@@ -12,14 +12,14 @@ interface ConfigFileSelectorProps {
 
 export default function ConfigFileSelector(props: ConfigFileSelectorProps) {
   const { Option } = components;
-  const IconOption = (propss: any) => (
-    <Option {...propss}>
-      {!!props.filesWithPleaseFillValue.find((f) => f === propss.data.label) ? (
+  const IconOption = (iconProps: any) => (
+    <Option {...iconProps}>
+      {!!props.filesWithPleaseFillValue.find((f) => f === iconProps.data.label) ? (
         <FontAwesomeIcon id="configFileEntry" icon={faExclamationTriangle} size="lg" />
       ) : (
         <></>
       )}
-      {propss.data.label}
+      {iconProps.data.label}
     </Option>
   );
 

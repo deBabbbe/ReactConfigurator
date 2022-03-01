@@ -94,7 +94,8 @@ export default function Configurator(props: ConfiguratorProps) {
 
   const setConfigFileChanged = (value: string): void => {
     setConfigFileName(value);
-    const configs = props.loadedConfigs.find((c) => c.fileName === value)!.configs;
+    const nameIsValue = (config: FileConfigEntry) => config.fileName === value;
+    const configs = props.loadedConfigs.find(nameIsValue)!.configs;
     configs.forEach((entry) => Object.assign(entry, { key: uuid() }));
 
     setDataOfCurrentConfig(configs);
