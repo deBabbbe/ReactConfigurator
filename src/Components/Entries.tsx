@@ -10,26 +10,26 @@ interface EntriesProps {
 }
 
 export default function Entries(props: EntriesProps) {
-  const setType = (entry: ConfigEntry): ((type: string) => void) => {
-    return (type) => {
-      entry.type = type;
-      const data = props.filteredData.map((data) => {
-        if (data === entry) {
-          data.type = type;
-        }
-        return data;
-      });
-      props.setDataOfCurrentConfig(data);
-    };
-  };
+  const setType =
+    (entry: ConfigEntry): ((type: string) => void) =>
+      (type) => {
+        entry.type = type;
+        const data = props.filteredData.map((configEntry) => {
+          if (configEntry === entry) {
+            configEntry.type = type;
+          }
+          return configEntry;
+        });
+        props.setDataOfCurrentConfig(data);
+      };
 
   const setValue = (entry: ConfigEntry): ((value: string) => void) => {
     return (value) => {
-      const data = props.filteredData.map((data) => {
-        if (data === entry) {
-          data.value = value;
+      const data = props.filteredData.map((configEntry) => {
+        if (configEntry === entry) {
+          configEntry.value = value;
         }
-        return data;
+        return configEntry;
       });
       props.setDataOfCurrentConfig(data);
     };
@@ -38,11 +38,11 @@ export default function Entries(props: EntriesProps) {
   const setConfig = (entry: ConfigEntry): ((configText: string) => void) => {
     return (configText) => {
       entry.config = configText;
-      const data = props.filteredData.map((data) => {
-        if (data === entry) {
-          data.config = configText;
+      const data = props.filteredData.map((configEntry) => {
+        if (configEntry === entry) {
+          configEntry.config = configText;
         }
-        return data;
+        return configEntry;
       });
       props.setDataOfCurrentConfig(data);
     };

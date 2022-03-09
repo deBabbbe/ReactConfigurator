@@ -18,7 +18,8 @@ interface ConfiguratorProps {
   setReloadSettings: Dispatch<SetStateAction<string>>;
 }
 
-const getDataOfCurrentConfigMapped = (configs: ConfigEntry[]): typeof configs => configs.map((entry) => Object.assign(entry, { key: uuid() }));
+const getDataOfCurrentConfigMapped = (configs: ConfigEntry[]): typeof configs =>
+  configs.map((entry) => Object.assign(entry, { key: uuid() }));
 
 export default function Configurator(props: ConfiguratorProps) {
   const [typeHidden, setTypeHidden] = useState(false);
@@ -47,6 +48,11 @@ export default function Configurator(props: ConfiguratorProps) {
     setFilteredData(dataOfCurrentConfig.filter(containsFilterValue));
     setFilterText(filterValue);
   };
+
+  const getIndexOfCurrentConfigFile = (props: ConfiguratorProps, configFileName: string) => {
+    const configToChange = props.loadedConfigs.filter((c) => c.fileName === configFileName)[0] || null;
+    return props.loadedConfigs.indexOf(configToChange);
+  }
 
   const addEntry = () => {
     const newData = produce(dataOfCurrentConfig, (draft) => {
@@ -83,7 +89,7 @@ export default function Configurator(props: ConfiguratorProps) {
     const blob = new Blob([JSON.stringify(props.loadedConfigs)], {
       type: "application/json",
     });
-    FileSaver.saveAs(blob, "config.json");
+    FileSaver.saveAs(blob, "config.json", { autoBom: false });
   };
 
   const logout = () => {
@@ -138,8 +144,4 @@ export default function Configurator(props: ConfiguratorProps) {
       </header>
     </div>
   );
-}
-function getIndexOfCurrentConfigFile(props: ConfiguratorProps, configFileName: string) {
-  const configToChange = props.loadedConfigs.filter((c) => c.fileName === configFileName)[0] || null;
-  return props.loadedConfigs.indexOf(configToChange);
 }
