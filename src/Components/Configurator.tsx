@@ -1,8 +1,7 @@
 import { v4 as uuid } from "uuid";
-import { Dispatch, SetStateAction, useState } from "react";
+import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { ConfigEntry, FileConfigEntry } from "../DataTypes/ConfigEntries";
 import { Constants } from "../DataTypes/Constants";
-import React from "react";
 import { ApplicationBar } from "./ApplicationBar";
 import { ActionBar } from "./ActionBar";
 import { ConfigBar } from "./ConfigBar";
@@ -11,7 +10,6 @@ import ConfigFileSelector from "./ConfigFileSelector";
 import SearchBar from "./SearchBar";
 import Entries from "./Entries";
 import FileSaver from "file-saver";
-import { useEffect } from "react";
 import produce from "immer";
 
 interface ConfiguratorProps {
@@ -143,6 +141,5 @@ export default function Configurator(props: ConfiguratorProps) {
 }
 function getIndexOfCurrentConfigFile(props: ConfiguratorProps, configFileName: string) {
   const configToChange = props.loadedConfigs.filter((c) => c.fileName === configFileName)[0] || null;
-  const index = props.loadedConfigs.indexOf(configToChange);
-  return index;
+  return props.loadedConfigs.indexOf(configToChange);
 }

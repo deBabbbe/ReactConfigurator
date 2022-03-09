@@ -9,6 +9,13 @@ describe("contains", () => {
     expect((text as any).contains(substring)).toBeTruthy();
   });
 
+  it("value, case not ignored", () => {
+    const text = uuid().toString();
+    const substring = text.substring(2, 5);
+
+    expect((text as any).contains(substring, false)).toBeTruthy();
+  });
+
   it("value not", () => {
     const text = uuid().toString();
     const substring = uuid().toString();
@@ -20,6 +27,6 @@ describe("contains", () => {
     const text = uuid().toString().toLowerCase();
     const substring = text.substring(2, 5).toUpperCase();
 
-    expect((text as any).contains(substring, false)).toBeFalsy();
+    expect(text.contains(substring, false)).toBeFalsy();
   });
 });
