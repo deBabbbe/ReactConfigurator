@@ -1,7 +1,7 @@
-import { FileConfigEntry } from "./DataTypes/ConfigEntries";
-import Configurator from "./Components/Configurator";
 import React, { useEffect, useState } from "react";
 import "./App.scss";
+import Configurator from "./Components/Configurator";
+import { FileConfigEntry } from "./DataTypes/ConfigEntries";
 
 export default function App() {
   const [isInitialized, setIsInitialized] = useState(false);
