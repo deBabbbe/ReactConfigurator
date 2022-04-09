@@ -13,7 +13,7 @@
     "babel-eslint": "^10.1.0",
     "file-saver": "^2.0.5",
     "immer": "^9.0.12",
-    "moment": "^2.29.1",
+    "moment": "^2.29.2",
     "node-sass": "^7.0.1",
     "react": "^18.0.0",
     "react-bootstrap": "^2.1.1",
